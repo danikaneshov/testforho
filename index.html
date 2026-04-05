@@ -11,8 +11,9 @@
             --black: #121212;
             --red: #e60023;
             --cyan: #00e5ff;
-            var(--font-body): 'Montserrat', sans-serif;
-            var(--font-vandal): 'Permanent Marker', cursive;
+            /* ИСПРАВЛЕНА ОШИБКА ЗДЕСЬ */
+            --font-body: 'Montserrat', sans-serif;
+            --font-vandal: 'Permanent Marker', cursive;
         }
 
         * { margin: 0; padding: 0; box-sizing: border-box; }
@@ -27,7 +28,7 @@
                 radial-gradient(#0000001a 1px, transparent 1px);
             background-size: 20px 20px;
             background-position: 0 0, 10px 10px;
-            padding-bottom: 80px; /* Отступ для плавающей мобильной кнопки */
+            padding-bottom: 80px;
         }
 
         /* --- КНОПКИ --- */
@@ -121,7 +122,7 @@
         .marquee span { margin: 0 30px; }
         @keyframes scroll-left { 0% { transform: translateX(0); } 100% { transform: translateX(-50%); } }
 
-        /* --- КАТАЛОГ (СВАЙП НА МОБИЛКАХ) --- */
+        /* --- КАТАЛОГ --- */
         .catalog { padding: 80px 0; text-align: center; }
         .section-title {
             font-family: var(--font-body); font-weight: 900; font-size: 2.5rem;
@@ -131,7 +132,7 @@
         .grid {
             display: flex; gap: 30px; padding: 20px 5vw 40px;
             overflow-x: auto; scroll-snap-type: x mandatory;
-            -ms-overflow-style: none; scrollbar-width: none; /* Скрываем скроллбар */
+            -ms-overflow-style: none; scrollbar-width: none;
         }
         .grid::-webkit-scrollbar { display: none; }
         .card {
@@ -165,15 +166,15 @@
 
         /* --- ФУТЕР --- */
         footer { padding: 60px 5vw; background: var(--black); color: white; text-align: center; }
-        footer .logo { color: white; margin-bottom: 15px; display: inline-block; }
+        footer .logo { font-family: var(--font-vandal); font-size: 2.5rem; color: white; margin-bottom: 15px; display: inline-block; }
 
         /* --- АДАПТИВ --- */
         @media (max-width: 768px) {
-            header nav { display: none; /* Прячем меню, оставляем только лого и кнопку */ }
-            .mobile-fab { display: flex; } /* Показываем плавающую кнопку */
+            header nav { display: none; }
+            .mobile-fab { display: flex; }
             body { padding-bottom: 100px; }
             .grid { padding-left: 5vw; padding-right: 5vw; }
-            .card { min-width: 85vw; } /* Карточка на почти весь экран телефона */
+            .card { min-width: 85vw; }
         }
     </style>
 </head>
@@ -278,8 +279,8 @@
 
     <footer>
         <div class="logo">dám dym</div>
-        <p style="font-weight: 800; font-size: 1.2rem; margin-bottom: 20px;">Ежедневно 14:00 - 03:00</p>
-        <p style="font-size: 0.8rem; color: #666;">© 2026 dám dym Astana. Курение вредит вашему здоровью.</p>
+        <p style="font-family: var(--font-body); font-weight: 900; font-size: 1.2rem; margin-bottom: 20px;">Ежедневно 14:00 - 03:00</p>
+        <p style="font-family: var(--font-body); font-size: 0.8rem; color: #666;">© 2026 dám dym Astana. Курение вредит вашему здоровью.</p>
     </footer>
 
     <a href="https://wa.me/77000000000" target="_blank" class="btn btn-red mobile-fab">
@@ -310,9 +311,7 @@
             const btn = item.querySelector('.faq-question');
             btn.addEventListener('click', () => {
                 const isActive = item.classList.contains('active');
-                // Закрываем все остальные
                 faqItems.forEach(i => i.classList.remove('active'));
-                // Открываем текущий, если он был закрыт
                 if (!isActive) item.classList.add('active');
             });
         });
