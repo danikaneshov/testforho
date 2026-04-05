@@ -3,280 +3,314 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>ДӘМ ДЫМ | Кальян на дом в Астане</title>
-    <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;700;900&family=Permanent+Marker&family=Rubik+Mono+One&display=swap" rel="stylesheet">
+    <title>ДӘМ ДЫМ | Доставка кальянов Астана</title>
+    <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@500;800;900&family=Permanent+Marker&display=swap" rel="stylesheet">
     <style>
-        /* Базовые стили и цвета */
         :root {
-            --bg-color: #e6e1d6; /* Цвет картона/грязного бетона */
-            --black: #111;
-            --red: #d92b3a;
-            --turquoise: #00b4a9;
+            --bg-dirty: #dad4c7;
+            --black: #121212;
+            --red: #e60023;
+            --cyan: #00e5ff;
             --font-main: 'Montserrat', sans-serif;
             --font-vandal: 'Permanent Marker', cursive;
-            --font-heading: 'Rubik Mono One', sans-serif;
         }
 
         * {
-            box-sizing: border-box;
-            margin: 0;
-            padding: 0;
+            margin: 0; padding: 0; box-sizing: border-box;
         }
 
         body {
             font-family: var(--font-main);
-            background-color: var(--bg-color);
+            background-color: var(--bg-dirty);
             color: var(--black);
             overflow-x: hidden;
-            /* Сюда потом можно добавить фоновую картинку текстуры бетона */
-            /* background-image: url('concrete-texture.jpg'); */
+            /* Создаем CSS-шум и текстуру картона */
+            background-image: 
+                radial-gradient(#0000001a 1px, transparent 1px),
+                radial-gradient(#0000001a 1px, transparent 1px);
+            background-size: 20px 20px;
+            background-position: 0 0, 10px 10px;
         }
 
-        /* --- Всплывающее окно 21+ --- */
+        /* --- UI ЭЛЕМЕНТЫ --- */
+        .btn {
+            display: inline-block;
+            font-family: var(--font-main);
+            font-weight: 900;
+            text-transform: uppercase;
+            padding: 18px 35px;
+            background: var(--cyan);
+            color: var(--black);
+            text-decoration: none;
+            border: 4px solid var(--black);
+            box-shadow: 6px 6px 0px var(--black);
+            transition: all 0.1s ease;
+            cursor: pointer;
+            font-size: 1.1rem;
+        }
+        .btn:active {
+            transform: translate(4px, 4px);
+            box-shadow: 2px 2px 0px var(--black);
+        }
+        .btn-red { background: var(--red); color: white; }
+        .btn-black { background: var(--black); color: white; }
+
+        /* --- ВСПЛЫВАЮЩЕЕ ОКНО 21+ --- */
         #age-gate {
-            position: fixed;
-            top: 0; left: 0; width: 100%; height: 100%;
-            background: rgba(0, 0, 0, 0.95);
+            position: fixed; inset: 0;
+            background: rgba(18, 18, 18, 0.98);
+            z-index: 10000;
+            display: flex; flex-direction: column;
+            justify-content: center; align-items: center;
+            text-align: center; padding: 20px;
             color: white;
-            display: flex;
-            flex-direction: column;
-            justify-content: center;
-            align-items: center;
-            z-index: 9999;
-            text-align: center;
-            padding: 20px;
         }
         #age-gate h2 {
-            font-family: var(--font-heading);
-            font-size: 2rem;
-            color: var(--red);
-            margin-bottom: 20px;
+            font-family: var(--font-vandal);
+            font-size: 4rem; color: var(--red);
+            transform: rotate(-3deg); margin-bottom: 20px;
         }
-        #age-gate p {
-            margin-bottom: 30px;
-            font-size: 1.2rem;
-        }
-        .age-btns {
-            display: flex;
-            gap: 20px;
-        }
+        #age-gate p { font-size: 1.2rem; max-width: 500px; margin-bottom: 40px; line-height: 1.5; }
+        .age-buttons { display: flex; gap: 20px; flex-wrap: wrap; justify-content: center; }
 
-        /* --- Кнопки в вандальском стиле --- */
-        .btn {
-            font-family: var(--font-heading);
-            padding: 15px 30px;
-            border: 3px solid var(--black);
-            background: var(--turquoise);
-            color: var(--black);
-            text-transform: uppercase;
-            text-decoration: none;
-            cursor: pointer;
-            transition: all 0.2s;
-            box-shadow: 5px 5px 0px var(--black);
-        }
-        .btn:hover {
-            transform: translate(2px, 2px);
-            box-shadow: 3px 3px 0px var(--black);
-        }
-        .btn-red {
-            background: var(--red);
-            color: white;
-        }
-
-        /* --- Шапка --- */
+        /* --- ШАПКА --- */
         header {
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
-            padding: 20px 50px;
-            border-bottom: 4px solid var(--black);
-            background: rgba(255, 255, 255, 0.5);
+            padding: 20px 5vw;
+            display: flex; justify-content: space-between; align-items: center;
+            border-bottom: 5px solid var(--black);
+            background: var(--bg-dirty);
+            position: sticky; top: 0; z-index: 100;
         }
         .logo {
             font-family: var(--font-vandal);
-            font-size: 3rem;
-            line-height: 1;
-            transform: rotate(-3deg);
-            text-shadow: 3px 3px 0px var(--turquoise);
+            font-size: 2.5rem; line-height: 1;
+            color: var(--black);
+            text-shadow: 2px 2px 0px var(--cyan);
+            transform: rotate(-2deg);
         }
         nav a {
-            text-decoration: none;
-            color: var(--black);
-            font-weight: 700;
-            margin: 0 15px;
-            text-transform: uppercase;
-            font-family: var(--font-heading);
-            font-size: 0.9rem;
+            font-weight: 800; color: var(--black);
+            text-decoration: none; margin: 0 15px;
+            text-transform: uppercase; transition: color 0.2s;
         }
-        nav a:hover {
+        nav a:hover { color: var(--red); }
+
+        /* --- ГЕРОЙ ЭКРАН --- */
+        .hero {
+            min-height: 80vh;
+            display: flex; align-items: center; justify-content: center;
+            padding: 50px 5vw; position: relative; overflow: hidden;
+        }
+        /* Рваный фон через clip-path */
+        .hero-bg-splash {
+            position: absolute; width: 150%; height: 150%;
+            background: var(--black);
+            clip-path: polygon(0 0, 100% 0, 100% 80%, 80% 100%, 0 90%);
+            z-index: -1; top: -20%; left: -10%;
+        }
+        .hero-content {
+            text-align: center; color: white; max-width: 800px;
+        }
+        .hero-title {
+            font-family: var(--font-vandal);
+            font-size: clamp(3rem, 8vw, 7rem);
+            line-height: 0.9; margin-bottom: 20px;
+            text-shadow: 4px 4px 0px var(--red);
+            transform: rotate(-2deg);
+        }
+        .hero-subtitle {
+            font-size: 1.5rem; font-weight: 800;
+            margin-bottom: 40px; text-transform: uppercase;
+        }
+
+        /* --- КАТАЛОГ --- */
+        .catalog { padding: 80px 5vw; text-align: center; }
+        .section-title {
+            font-family: var(--font-vandal);
+            font-size: 3rem; margin-bottom: 50px;
+            display: inline-block;
+            background: var(--black); color: white;
+            padding: 10px 20px; transform: rotate(1deg);
+        }
+        .grid {
+            display: grid; grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 40px; justify-items: center;
+        }
+        .card {
+            background: white; border: 5px solid var(--black);
+            padding: 15px; width: 100%; max-width: 350px;
+            box-shadow: 8px 8px 0px rgba(0,0,0,1);
+            transition: transform 0.2s;
+        }
+        .card:hover { transform: translateY(-10px) rotate(-1deg); }
+        .card-img {
+            height: 300px; background: #eee;
+            border: 3px solid var(--black); margin-bottom: 15px;
+            display: flex; align-items: center; justify-content: center;
+            font-weight: 900; color: #aaa;
+        }
+        .card-title {
+            font-family: var(--font-vandal); font-size: 1.8rem;
+            margin-bottom: 10px; text-transform: uppercase;
+        }
+        .card-price {
+            font-weight: 900; font-size: 1.4rem; margin-bottom: 20px;
             color: var(--red);
         }
-        .header-contacts .btn {
-            padding: 10px 20px;
-            font-size: 0.8rem;
-        }
 
-        /* --- Главный экран (Hero) --- */
-        .hero {
-            display: flex;
-            padding: 80px 50px;
-            align-items: center;
-            justify-content: space-between;
+        /* --- КАК РАБОТАЕМ --- */
+        .how-it-works {
+            background: var(--cyan); padding: 80px 5vw;
+            border-top: 5px solid var(--black); border-bottom: 5px solid var(--black);
         }
-        .hero-text {
-            max-width: 50%;
+        .steps {
+            display: flex; justify-content: space-around; flex-wrap: wrap; gap: 30px;
+            text-align: center; margin-top: 40px;
         }
-        .hero-text h1 {
-            font-family: var(--font-vandal);
-            font-size: 4.5rem;
-            line-height: 1.1;
-            margin-bottom: 20px;
+        .step { flex: 1; min-width: 200px; }
+        .step-num {
+            font-family: var(--font-vandal); font-size: 4rem;
+            color: var(--bg-dirty); text-shadow: 3px 3px 0 var(--black);
+            margin-bottom: 10px; line-height: 1;
         }
-        .hero-text p {
-            font-size: 1.5rem;
-            font-weight: 700;
-            margin-bottom: 40px;
-        }
+        .step-text { font-weight: 900; font-size: 1.2rem; text-transform: uppercase; }
 
-        /* --- Секция "Твои варианты пара" --- */
-        .products {
-            padding: 50px;
+        /* --- ФУТЕР --- */
+        footer {
+            padding: 50px 5vw; background: var(--black); color: white;
             text-align: center;
         }
-        .products h2 {
-            font-family: var(--font-heading);
-            font-size: 2.5rem;
-            margin-bottom: 50px;
-        }
-        .cards-container {
-            display: flex;
-            justify-content: center;
-            gap: 40px;
-            flex-wrap: wrap;
-        }
-        
-        /* Эффект стикера для карточек */
-        .sticker-card {
-            background: white;
-            border: 5px solid white;
-            border-radius: 15px;
-            padding: 15px;
-            width: 300px;
-            box-shadow: 8px 8px 0px rgba(0,0,0,0.9);
-            transform: rotate(-2deg);
-            transition: transform 0.3s;
-        }
-        .sticker-card:nth-child(2) {
-            transform: rotate(3deg);
-        }
-        .sticker-card:hover {
-            transform: scale(1.05) rotate(0deg);
-        }
-        .sticker-card img {
-            width: 100%;
-            border-radius: 10px;
-            background: #ccc; /* Заглушка, пока нет реальных фото */
-            height: 300px;
-            object-fit: cover;
-            border: 3px solid var(--black);
-        }
-        .sticker-card h3 {
-            font-family: var(--font-vandal);
-            font-size: 1.5rem;
-            margin: 15px 0 5px;
-            text-transform: uppercase;
-        }
-        .sticker-card .price {
-            font-weight: 900;
-            font-size: 1.2rem;
-            margin-bottom: 15px;
-        }
+        footer h2 { font-family: var(--font-vandal); font-size: 2rem; margin-bottom: 20px; }
+        .footer-contacts { margin-bottom: 30px; font-weight: 800; font-size: 1.2rem; }
 
-        /* --- Адаптив --- */
         @media (max-width: 768px) {
-            header { flex-direction: column; gap: 20px; text-align: center; }
-            .hero { flex-direction: column; text-align: center; padding: 40px 20px; }
-            .hero-text { max-width: 100%; }
-            .hero-text h1 { font-size: 3rem; }
+            header { flex-direction: column; gap: 15px; }
+            nav { display: flex; flex-wrap: wrap; justify-content: center; gap: 10px; }
+            nav a { margin: 0; }
+            .hero-title { text-shadow: 2px 2px 0px var(--red); }
         }
     </style>
 </head>
 <body>
 
     <div id="age-gate">
-        <h2>ВНИМАНИЕ! 21+</h2>
-        <p>Сайт содержит информацию о табачной продукции.<br>В соответствии с законодательством РК, доступ разрешен только лицам старше 21 года.</p>
-        <div class="age-btns">
-            <button class="btn" onclick="closeAgeGate()">Да, мне есть 21</button>
-            <a href="https://google.com" class="btn btn-red">Нет, мне меньше</a>
+        <h2>СТОП. 21+</h2>
+        <p>Сайт содержит информацию о табачной продукции. Согласно законодательству РК, мы доставляем только лицам старше 21 года. Готов подтвердить возраст курьеру?</p>
+        <div class="age-buttons">
+            <button class="btn btn-red" onclick="verifyAge()">ДА, МНЕ ЕСТЬ 21</button>
+            <a href="https://google.com" class="btn">НЕТ, УЙТИ</a>
         </div>
     </div>
 
     <header>
         <div class="logo">ДӘМ ДЫМ</div>
         <nav>
-            <a href="#hookahs">Наши кальяны</a>
-            <a href="#how">Как работаем</a>
+            <a href="#catalog">Аппараты</a>
+            <a href="#how">Процесс</a>
+            <a href="#contacts">Связь</a>
         </nav>
-        <div class="header-contacts">
-            <a href="#" class="btn">WhatsApp</a>
-        </div>
+        <a href="https://wa.me/77000000000?text=Салам! Хочу заказать кальян." target="_blank" class="btn" style="padding: 10px 20px; font-size: 0.9rem;">Написать в WA</a>
     </header>
 
     <section class="hero">
-        <div class="hero-text">
-            <h1>КАЛЬЯН НА ДОМ.<br><span style="color: var(--turquoise);">СМЕЛЫЙ ПАР.</span></h1>
-            <p>Премиум доставка кальянов за 60 минут в Астане. Выбери свой хаос.</p>
-            <a href="#hookahs" class="btn btn-red" style="font-size: 1.2rem;">ВЫБРАТЬ СВОЙ CHAOS →</a>
-        </div>
-        <div class="hero-image">
-            <img src="https://via.placeholder.com/400x500/111/fff?text=HOOKAH+IMAGE" alt="Кальян" style="border: none; mix-blend-mode: multiply;">
+        <div class="hero-bg-splash"></div>
+        <div class="hero-content">
+            <h1 class="hero-title">ДЫМ ТАМ,<br>ГДЕ ТЫ</h1>
+            <p class="hero-subtitle">Жесткий контроль качества. Доставка по Астане за 60 минут.</p>
+            <a href="#catalog" class="btn btn-red">ВЫБРАТЬ СВОЙ CHAOS</a>
         </div>
     </section>
 
-    <section class="products" id="hookahs">
-        <h2>ТВОИ ВАРИАНТЫ ПАРА</h2>
-        
-        <div class="cards-container">
-            <div class="sticker-card">
-                <img src="https://via.placeholder.com/300x300/00b4a9/111?text=TURQUOISE" alt="Бирюзовый хаос">
-                <h3>Бирюзовый Хаос</h3>
-                <p class="price">15 000 ₸ / сутки</p>
-                <a href="#" class="btn" style="display: block;">АРЕНДОВАТЬ</a>
+    <section id="catalog" class="catalog">
+        <h2 class="section-title">АРСЕНАЛ</h2>
+        <div class="grid">
+            
+            <div class="card">
+                <div class="card-img">[ФОТО КАЛЬЯНА 1]</div>
+                <h3 class="card-title">BASIC PUNK</h3>
+                <p style="margin-bottom: 10px; font-weight: 500;">Классическая чаша + 1 забивка (на выбор)</p>
+                <p class="card-price">10 000 ₸</p>
+                <a href="https://wa.me/77000000000?text=Хочу заказать BASIC PUNK за 10к" target="_blank" class="btn btn-black" style="display: block;">ЗАБРАТЬ</a>
             </div>
 
-            <div class="sticker-card">
-                <img src="https://via.placeholder.com/300x300/d92b3a/111?text=RED+VANDAL" alt="Красный вандал">
-                <h3>Красный Вандал</h3>
-                <p class="price">15 000 ₸ / сутки</p>
-                <a href="#" class="btn btn-red" style="display: block;">АРЕНДОВАТЬ</a>
+            <div class="card" style="transform: rotate(2deg);">
+                <div class="card-img">[ФОТО КАЛЬЯНА 2]</div>
+                <h3 class="card-title">RED VANDAL</h3>
+                <p style="margin-bottom: 10px; font-weight: 500;">Премиум табак + 2 забивки + плитка</p>
+                <p class="card-price">15 000 ₸</p>
+                <a href="https://wa.me/77000000000?text=Хочу заказать RED VANDAL за 15к" target="_blank" class="btn btn-red" style="display: block;">ЗАБРАТЬ</a>
             </div>
 
-            <div class="sticker-card">
-                <img src="https://via.placeholder.com/300x300/111/fff?text=BLACK+PUNK" alt="Черный панк">
-                <h3>Черный Панк</h3>
-                <p class="price">15 000 ₸ / сутки</p>
-                <a href="#" class="btn" style="display: block; background: var(--black); color: white;">АРЕНДОВАТЬ</a>
+            <div class="card" style="transform: rotate(-1deg);">
+                <div class="card-img">[ФОТО КАЛЬЯНА 3]</div>
+                <h3 class="card-title">FULL CHAOS</h3>
+                <p style="margin-bottom: 10px; font-weight: 500;">Фруктовая чаша + 3 забивки + обслуживание мастера</p>
+                <p class="card-price">25 000 ₸</p>
+                <a href="https://wa.me/77000000000?text=Хочу заказать FULL CHAOS за 25к" target="_blank" class="btn" style="display: block;">ЗАБРАТЬ</a>
+            </div>
+
+        </div>
+    </section>
+
+    <section id="how" class="how-it-works">
+        <h2 class="section-title" style="background: var(--bg-dirty); color: var(--black); transform: rotate(-2deg);">КАК ЭТО РАБОТАЕТ</h2>
+        <div class="steps">
+            <div class="step">
+                <div class="step-num">01</div>
+                <div class="step-text">Выбираешь<br>тариф</div>
+            </div>
+            <div class="step">
+                <div class="step-num">02</div>
+                <div class="step-text">Пишешь нам<br>в WhatsApp</div>
+            </div>
+            <div class="step">
+                <div class="step-num">03</div>
+                <div class="step-text">Курьер летит<br>к тебе (60 мин)</div>
+            </div>
+            <div class="step">
+                <div class="step-num">04</div>
+                <div class="step-text">Дымишь<br>и отдыхаешь</div>
             </div>
         </div>
     </section>
+
+    <footer id="contacts">
+        <h2>ДӘМ ДЫМ</h2>
+        <div class="footer-contacts">
+            <p>Астана, Казахстан</p>
+            <p>Ежедневно с 14:00 до 03:00</p>
+        </div>
+        <a href="https://wa.me/77000000000?text=Салам! У меня есть вопрос." target="_blank" class="btn btn-red">СВЯЗАТЬСЯ С НАМИ</a>
+        <p style="margin-top: 40px; font-size: 0.8rem; color: #666;">© 2026 ДӘМ ДЫМ. Курение вредит вашему здоровью.</p>
+    </footer>
 
     <script>
-        // Простая логика для окна 21+
-        function closeAgeGate() {
+        // Проверка возраста через LocalStorage (запоминает юзера)
+        document.addEventListener("DOMContentLoaded", () => {
+            const ageGate = document.getElementById('age-gate');
+            if (!localStorage.getItem('ageVerified')) {
+                ageGate.style.display = 'flex';
+                document.body.style.overflow = 'hidden'; // Блокируем скролл
+            } else {
+                ageGate.style.display = 'none';
+            }
+        });
+
+        function verifyAge() {
+            localStorage.setItem('ageVerified', 'true');
             document.getElementById('age-gate').style.display = 'none';
-            // В идеале тут нужно сохранять куки, чтобы не спрашивать каждый раз
-            // document.cookie = "age_verified=true; max-age=2592000; path=/"; 
+            document.body.style.overflow = 'auto'; // Возвращаем скролл
         }
 
-        // Проверка куки при загрузке (раскомментировать на боевом сервере)
-        /*
-        window.onload = function() {
-            if (document.cookie.indexOf("age_verified=true") !== -1) {
-                document.getElementById('age-gate').style.display = 'none';
-            }
-        }
-        */
+        // Плавный скролл для якорей
+        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+            anchor.addEventListener('click', function (e) {
+                e.preventDefault();
+                document.querySelector(this.getAttribute('href')).scrollIntoView({
+                    behavior: 'smooth'
+                });
+            });
+        });
     </script>
 </body>
 </html>
