@@ -32,12 +32,13 @@
         .reveal { opacity: 0; transform: translateY(30px); transition: all 0.6s ease-out; }
         .reveal.active { opacity: 1; transform: translateY(0); }
 
+        /* Глобальные стили кнопок (вернул как было, чтобы шапка не ломалась) */
         .btn {
             display: inline-flex; justify-content: center; align-items: center;
             font-family: var(--font-body); font-weight: 900; text-transform: uppercase;
             padding: 15px 30px; background: var(--cyan); color: var(--black);
             text-decoration: none; border: 4px solid var(--black); box-shadow: 4px 4px 0px var(--black);
-            transition: transform 0.1s, box-shadow 0.1s; font-size: 1.1rem; letter-spacing: 1px; width: 100%; text-align: center;
+            transition: transform 0.1s, box-shadow 0.1s; font-size: 1.1rem; letter-spacing: 1px;
         }
         .btn:active { transform: translate(4px, 4px); box-shadow: 0px 0px 0px var(--black); }
         .btn-red { background: var(--red); color: white; }
@@ -108,7 +109,6 @@
             padding: 10px 20px; margin-bottom: 10px; text-transform: uppercase; transform: rotate(1deg);
         }
         
-        /* ИСПРАВЛЕНО: Теперь тут кириллический шрифт Montserrat */
         .promo-subtitle {
             font-family: var(--font-body); font-weight: 900; font-size: 1.4rem; color: var(--red);
             margin-bottom: 40px; text-transform: uppercase; padding: 0 10px;
@@ -145,10 +145,16 @@
         
         .card-title { font-family: var(--font-vandal); font-size: 2rem; margin-bottom: 5px; }
         .card-desc { font-weight: 800; font-size: 1rem; margin-bottom: 10px; line-height: 1.3; }
-        .card-kit { font-weight: 500; font-size: 0.85rem; color: #444; line-height: 1.4; margin-bottom: auto; padding-bottom: 20px; }
+        .card-kit { font-weight: 500; font-size: 0.85rem; color: #444; line-height: 1.4; margin-bottom: 20px; }
         
         .card-price { font-family: var(--font-vandal); font-size: 2.2rem; margin-bottom: 20px; color: var(--red); display: flex; align-items: baseline; gap: 10px; flex-wrap: wrap; }
         .old-price { font-family: var(--font-body); font-weight: 900; font-size: 1.2rem; color: #777; text-decoration: line-through; text-decoration-color: var(--black); text-decoration-thickness: 3px; }
+
+        /* ИСПРАВЛЕНИЕ КНОПОК ВНУТРИ КАРТОЧЕК */
+        .card .btn {
+            width: 100%; 
+            margin-top: auto; /* Прижимает кнопку к самому низу карточки */
+        }
 
         /* --- СТАТИЧНЫЙ FAQ --- */
         .faq { padding: 50px 5vw 80px; max-width: 800px; margin: 0 auto; }
@@ -226,7 +232,7 @@
                     <p class="card-desc">Отличный выбор для комфортного вечера одному или в паре.</p>
                     <p class="card-kit">В комплекте: 1 аппарат в полной сборке, 1 порция табака, 4 угля, электроплитка, щипцы, мундштуки.</p>
                     <p class="card-price"><span class="old-price">8 750 ₸</span> 7 000 ₸</p>
-                    <a href="https://wa.me/77000000000?text=Салам! Хочу заказать тариф SOLO за 7000" target="_blank" class="btn btn-black">ЗАБРАТЬ</a>
+                    <a href="https://wa.me/77000000000?text=Салам! Хочу заказать тариф SOLO за 7000" target="_blank" class="btn btn-black">ЗАКАЗАТЬ</a>
                 </div>
 
                 <div class="card reveal" style="transition-delay: 0.1s;">
@@ -235,7 +241,7 @@
                     <p class="card-desc">Самый популярный. Взять две забивки — выгоднее, чем докупать позже!</p>
                     <p class="card-kit">В комплекте: 1 аппарат в полной сборке, 2 порции табака, 8 углей, электроплитка, щипцы, мундштуки.</p>
                     <p class="card-price"><span class="old-price">11 250 ₸</span> 9 000 ₸</p>
-                    <a href="https://wa.me/77000000000?text=Салам! Хочу заказать тариф DOUBLE за 9000" target="_blank" class="btn btn-red">ЗАБРАТЬ</a>
+                    <a href="https://wa.me/77000000000?text=Салам! Хочу заказать тариф DOUBLE за 9000" target="_blank" class="btn btn-red">ЗАКАЗАТЬ</a>
                 </div>
 
                 <div class="card reveal" style="transition-delay: 0.2s;">
@@ -244,7 +250,7 @@
                     <p class="card-desc">Идеальный набор для друзей с приятной скидкой за объем.</p>
                     <p class="card-kit">В комплекте: 2 аппарата, 4 порции табака, 16 углей, 2 плитки, 2 пары щипцов и мундштуки.</p>
                     <p class="card-price"><span class="old-price">20 000 ₸</span> 16 000 ₸</p>
-                    <a href="https://wa.me/77000000000?text=Салам! Хочу заказать тариф COMPANY за 16000" target="_blank" class="btn">ЗАБРАТЬ</a>
+                    <a href="https://wa.me/77000000000?text=Салам! Хочу заказать тариф COMPANY за 16000" target="_blank" class="btn">ЗАКАЗАТЬ</a>
                 </div>
 
                 <div class="card reveal" style="transition-delay: 0.3s;">
@@ -252,8 +258,8 @@
                     <h3 class="card-title">MASTER</h3>
                     <p class="card-desc">Кейтеринг на вашем празднике, дне рождении или корпоративе.</p>
                     <p class="card-kit">В услугу входит: Выезд мастера с оборудованием, проф. забивки, контроль жара и замена углей.</p>
-                    <p class="card-price" style="font-size: 1.5rem; color: var(--black);">ИНДИВИДУАЛЬНО</p>
-                    <a href="https://wa.me/77000000000?text=Салам! Хочу обсудить кейтеринг (HOOKAH MASTER)" target="_blank" class="btn btn-black">ОБСУДИТЬ</a>
+                    <p class="card-price" style="font-family: var(--font-body); font-weight: 900; font-size: 1.5rem; color: var(--black);">ИНДИВИДУАЛЬНО</p>
+                    <a href="https://wa.me/77000000000?text=Салам! Хочу обсудить кейтеринг (HOOKAH MASTER)" target="_blank" class="btn btn-black">ЗАКАЗАТЬ</a>
                 </div>
 
             </div>
