@@ -108,19 +108,18 @@
             padding: 10px 20px; margin-bottom: 10px; text-transform: uppercase; transform: rotate(1deg);
         }
         
+        /* ИСПРАВЛЕНО: Теперь тут кириллический шрифт Montserrat */
         .promo-subtitle {
-            font-family: var(--font-vandal); font-size: 1.5rem; color: var(--red);
-            margin-bottom: 40px; text-shadow: 1px 1px 0px rgba(0,0,0,0.1);
+            font-family: var(--font-body); font-weight: 900; font-size: 1.4rem; color: var(--red);
+            margin-bottom: 40px; text-transform: uppercase; padding: 0 10px;
         }
 
         .grid {
             display: flex; gap: 30px; padding: 20px 5vw 40px; overflow-x: auto;
             scroll-snap-type: x mandatory; -ms-overflow-style: none; scrollbar-width: none;
-            justify-content: flex-start; /* Изменил для 4 карточек, чтобы скроллилось ровно */
+            justify-content: flex-start;
         }
-        /* Центрируем на больших экранах, если влезают */
         @media (min-width: 1400px) { .grid { justify-content: center; } }
-        
         .grid::-webkit-scrollbar { display: none; }
         
         .card {
@@ -170,6 +169,7 @@
             .grid { justify-content: flex-start; padding-left: 5vw; padding-right: 10vw; }
             .card { min-width: 85vw; }
             .hero-title { font-size: 3.5rem; }
+            .promo-subtitle { font-size: 1.1rem; }
         }
     </style>
 </head>
@@ -216,7 +216,7 @@
 
         <section id="catalog" class="catalog">
             <h2 class="section-title reveal">АРСЕНАЛ</h2>
-            <p class="promo-subtitle reveal">В ЧЕСТЬ ОТКРЫТИЯ СКИДКА -20% НА ПЕРВЫЙ МЕСЯЦ!</p>
+            <p class="promo-subtitle reveal">🔥 В ЧЕСТЬ ОТКРЫТИЯ СКИДКА -20% НА ПЕРВЫЙ МЕСЯЦ!</p>
             
             <div class="grid">
                 
