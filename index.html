@@ -159,23 +159,15 @@
         .card-desc { font-weight: 500; font-size: 1rem; margin-bottom: 20px; min-height: 40px; }
         .card-price { font-family: var(--font-vandal); font-size: 2rem; margin-bottom: 20px; color: var(--red); }
 
-        /* --- СТАТИЧНЫЙ FAQ БЕЗ БАГОВ --- */
+        /* --- ПОЛНОСТЬЮ ОТКРЫТЫЙ СТАТИЧНЫЙ FAQ --- */
         .faq { padding: 50px 5vw 80px; max-width: 800px; margin: 0 auto; }
-        .faq-item { margin-bottom: 15px; border: 4px solid var(--black); background: white; }
+        .faq-item { margin-bottom: 20px; border: 4px solid var(--black); background: white; padding-bottom: 20px; }
         .faq-question {
-            width: 100%; text-align: left; padding: 20px; background: none; border: none;
-            font-family: var(--font-body); font-weight: 900; font-size: 1.1rem;
-            text-transform: uppercase; cursor: pointer; display: flex; justify-content: space-between; align-items: center;
+            width: 100%; text-align: left; padding: 20px 20px 10px 20px;
+            font-family: var(--font-body); font-weight: 900; font-size: 1.2rem;
+            text-transform: uppercase; color: var(--red);
         }
-        .faq-icon { font-family: var(--font-vandal); font-size: 1.5rem; transition: transform 0.2s; color: var(--red); }
-        
-        /* Блок с ответом по умолчанию скрыт */
-        .faq-answer { display: none; background: var(--bg-dirty); }
-        .faq-text { padding: 20px; border-top: 4px solid var(--black); font-weight: 500; line-height: 1.6; }
-        
-        /* При классе active блок мгновенно появляется */
-        .faq-item.active .faq-answer { display: block; }
-        .faq-item.active .faq-icon { transform: rotate(45deg); }
+        .faq-text { padding: 0 20px; font-weight: 500; line-height: 1.6; color: var(--black); }
 
         /* --- ФУТЕР --- */
         footer { padding: 60px 5vw; background: var(--black); color: white; text-align: center; }
@@ -268,38 +260,30 @@
             <h2 class="section-title reveal" style="margin-bottom: 30px;">УСЛОВИЯ И ВОПРОСЫ</h2>
             
             <div class="faq-item reveal">
-                <button class="faq-question">Что нужно для залога? <span class="faq-icon">+</span></button>
-                <div class="faq-answer">
-                    <div class="faq-text">
-                        <p>Никаких документов и удостоверений оставлять не нужно! Мы берем только <strong>депозит 10 000 ₸</strong>. Деньги возвращаются вам на карту сразу же после того, как курьер заберет аппарат в целости.</p>
-                    </div>
+                <div class="faq-question">Что нужно для залога?</div>
+                <div class="faq-text">
+                    <p>Никаких документов и удостоверений оставлять не нужно! Мы берем только <strong>депозит 10 000 ₸</strong>. Деньги возвращаются вам на карту сразу же после того, как курьер заберет аппарат в целости.</p>
                 </div>
             </div>
 
             <div class="faq-item reveal">
-                <button class="faq-question">Как происходит оплата? <span class="faq-icon">+</span></button>
-                <div class="faq-answer">
-                    <div class="faq-text">
-                        <p><strong>Никаких онлайн-предоплат на сайте.</strong> Вы оплачиваете заказ строго по факту: курьер привозит кальян, вы всё проверяете и только тогда оплачиваете аренду и залог (наличными или переводом).</p>
-                    </div>
+                <div class="faq-question">Как происходит оплата?</div>
+                <div class="faq-text">
+                    <p><strong>Никаких онлайн-предоплат на сайте.</strong> Вы оплачиваете заказ строго по факту: курьер привозит кальян, вы всё проверяете и только тогда оплачиваете аренду и залог (наличными или переводом).</p>
                 </div>
             </div>
 
             <div class="faq-item reveal">
-                <button class="faq-question">Что входит в комплект? <span class="faq-icon">+</span></button>
-                <div class="faq-answer">
-                    <div class="faq-text">
-                        <p>Сам аппарат, забитая чаша (или несколько), угли, одноразовые мундштуки, щипцы и компактная электроплитка для розжига.</p>
-                    </div>
+                <div class="faq-question">Что входит в комплект?</div>
+                <div class="faq-text">
+                    <p>Сам аппарат, забитая чаша (или несколько), угли, одноразовые мундштуки, щипцы и компактная электроплитка для розжига.</p>
                 </div>
             </div>
             
             <div class="faq-item reveal">
-                <button class="faq-question">Вы работаете круглосуточно? <span class="faq-icon">+</span></button>
-                <div class="faq-answer">
-                    <div class="faq-text">
-                        <p>Да, мы принимаем заказы и доставляем кальяны по Астане <strong>24/7</strong>. Ночью доставка может занимать чуть больше времени, уточняйте у оператора.</p>
-                    </div>
+                <div class="faq-question">Вы работаете круглосуточно?</div>
+                <div class="faq-text">
+                    <p>Да, мы принимаем заказы и доставляем кальяны по Астане <strong>24/7</strong>. Ночью доставка может занимать чуть больше времени, уточняйте у оператора.</p>
                 </div>
             </div>
         </section>
@@ -329,16 +313,6 @@
             ageGate.style.opacity = '0';
             setTimeout(() => { ageGate.style.display = 'none'; document.body.style.overflow = 'auto'; }, 400); 
         }
-
-        const faqItems = document.querySelectorAll('.faq-item');
-        faqItems.forEach(item => {
-            const btn = item.querySelector('.faq-question');
-            btn.addEventListener('click', () => {
-                const isActive = item.classList.contains('active');
-                faqItems.forEach(i => i.classList.remove('active'));
-                if (!isActive) item.classList.add('active');
-            });
-        });
 
         const revealElements = document.querySelectorAll('.reveal');
         const revealObserver = new IntersectionObserver((entries, observer) => {
