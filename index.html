@@ -4,7 +4,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>dám dym | Кальяны в Астане</title>
-    <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@500;900&family=Permanent+Marker&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@500;800;900&family=Permanent+Marker&display=swap" rel="stylesheet">
     <style>
         :root {
             --bg-dirty: #dad4c7;
@@ -13,7 +13,7 @@
             --cyan: #00e5ff;
             /* Шрифты */
             --font-body: 'Montserrat', sans-serif; /* Для простого текста */
-            --font-vandal: 'Permanent Marker', cursive; /* Для ВСЕХ заголовков */
+            --font-vandal: 'Permanent Marker', cursive; /* ТОЛЬКО ЛАТИНИЦА И ЦИФРЫ */
         }
 
         * {
@@ -36,8 +36,8 @@
         /* --- UI ЭЛЕМЕНТЫ --- */
         .btn {
             display: inline-block;
-            font-family: var(--font-vandal); /* Шрифт вандала */
-            font-weight: 400; /* Не используем bold для этого шрифта */
+            font-family: var(--font-body);
+            font-weight: 900; /* Максимально жирный для русского текста */
             text-transform: uppercase;
             padding: 15px 30px;
             background: var(--cyan);
@@ -47,7 +47,8 @@
             box-shadow: 6px 6px 0px var(--black);
             transition: all 0.1s ease;
             cursor: pointer;
-            font-size: 1.2rem;
+            font-size: 1.1rem;
+            letter-spacing: 1px;
             transform: rotate(-1deg);
         }
         .btn:active {
@@ -68,9 +69,11 @@
             color: white;
         }
         #age-gate h2 {
-            font-family: var(--font-vandal);
-            font-size: clamp(4rem, 10vw, 8rem); color: var(--red);
-            transform: rotate(-5deg); margin-bottom: 20px;
+            font-family: var(--font-body);
+            font-weight: 900;
+            font-size: clamp(3rem, 8vw, 6rem); 
+            color: var(--red);
+            transform: rotate(-3deg); margin-bottom: 20px;
             text-shadow: 5px 5px 0px rgba(0,0,0,1);
         }
         #age-gate p { font-size: 1.2rem; font-weight: 500; max-width: 500px; margin-bottom: 40px; line-height: 1.5; }
@@ -85,7 +88,7 @@
             position: sticky; top: 0; z-index: 100;
         }
         .logo {
-            font-family: var(--font-vandal);
+            font-family: var(--font-vandal); /* Латиница - маркер */
             font-size: 3.5rem; line-height: 1;
             color: var(--black);
             text-shadow: 3px 3px 0px var(--cyan);
@@ -93,8 +96,9 @@
             margin-right: 20px;
         }
         nav a {
-            font-family: var(--font-vandal); /* ШРИФТ ВАНДАЛА */
-            font-size: 1.2rem;
+            font-family: var(--font-body);
+            font-weight: 900;
+            font-size: 1.1rem;
             color: var(--black); text-decoration: none; margin: 0 10px;
             text-transform: uppercase; transition: color 0.2s;
         }
@@ -117,22 +121,23 @@
             text-align: center; color: white; max-width: 1000px;
         }
         .hero-title {
-            font-family: var(--font-vandal); /* ШРИФТ ВАНДАЛА */
+            font-family: var(--font-vandal); /* Латиница - маркер */
             font-size: clamp(4rem, 12vw, 10rem);
             line-height: 0.9; margin-bottom: 20px;
             text-shadow: 6px 6px 0px var(--red);
             transform: rotate(-2deg);
         }
         .hero-subtitle {
-            font-size: 1.5rem; font-weight: 900;
+            font-size: 1.3rem; font-weight: 800;
             margin-bottom: 40px; text-transform: uppercase;
         }
 
         /* --- КАТАЛОГ --- */
         .catalog { padding: 100px 5vw; text-align: center; }
         .section-title {
-            font-family: var(--font-vandal); /* ШРИФТ ВАНДАЛА */
-            font-size: 4rem; margin-bottom: 60px;
+            font-family: var(--font-body);
+            font-weight: 900;
+            font-size: 3rem; margin-bottom: 60px;
             display: inline-block;
             background: var(--black); color: white;
             padding: 10px 30px; transform: rotate(1deg);
@@ -155,11 +160,11 @@
             font-weight: 900; color: #aaa;
         }
         .card-title {
-            font-family: var(--font-vandal); /* ШРИФТ ВАНДАЛА */
-            font-size: 2rem; margin-bottom: 10px; text-transform: uppercase;
+            font-family: var(--font-vandal); /* Латиница - маркер */
+            font-size: 2.2rem; margin-bottom: 10px; text-transform: uppercase;
         }
         .card-price {
-            font-family: var(--font-vandal); /* ШРИФТ ВАНДАЛА */
+            font-family: var(--font-vandal); /* Цифры - маркер */
             font-size: 1.8rem; margin-bottom: 25px;
             color: var(--red); text-shadow: 2px 2px 0px rgba(0,0,0,1);
         }
@@ -175,12 +180,17 @@
         }
         .step { flex: 1; min-width: 250px; }
         .step-num {
-            font-family: var(--font-vandal); /* ШРИФТ ВАНДАЛА */
+            font-family: var(--font-vandal); /* Цифры - маркер */
             font-size: 6rem;
             color: var(--bg-dirty); text-shadow: 4px 4px 0 var(--black);
             margin-bottom: 10px; line-height: 1;
         }
-        .step-text { font-family: var(--font-vandal); /* ШРИФТ ВАНДАЛА */ font-size: 1.5rem; text-transform: uppercase; }
+        .step-text { 
+            font-family: var(--font-body); 
+            font-weight: 900;
+            font-size: 1.2rem; 
+            text-transform: uppercase; 
+        }
 
         /* --- ФУТЕР --- */
         footer {
@@ -188,14 +198,14 @@
             text-align: center;
         }
         footer .logo { text-shadow: 3px 3px 0px var(--red); color: white; margin-bottom: 20px; display: inline-block; }
-        .footer-contacts { margin-bottom: 40px; font-weight: 900; font-size: 1.3rem; }
+        .footer-contacts { margin-bottom: 40px; font-weight: 800; font-size: 1.2rem; }
 
         @media (max-width: 768px) {
             header { flex-direction: column; gap: 15px; }
             nav { display: flex; flex-wrap: wrap; justify-content: center; gap: 15px; }
             nav a { margin: 0; }
             .hero-title { text-shadow: 3px 3px 0px var(--red); }
-            .section-title { font-size: 2.5rem; }
+            .section-title { font-size: 2.2rem; }
         }
     </style>
 </head>
@@ -217,7 +227,7 @@
             <a href="#how">Процесс</a>
             <a href="#contacts">Связь</a>
         </nav>
-        <a href="https://wa.me/77000000000?text=Салам! Хочу заказать кальян." target="_blank" class="btn btn-cyan" style="padding: 10px 20px; font-size: 1rem;">WhatsApp заказ</a>
+        <a href="https://wa.me/77000000000?text=Салам! Хочу заказать кальян." target="_blank" class="btn btn-cyan" style="padding: 10px 20px; font-size: 0.9rem;">WHATSAPP ЗАКАЗ</a>
     </header>
 
     <section class="hero">
@@ -225,7 +235,7 @@
         <div class="hero-content">
             <h1 class="hero-title">DYM TAM,<br>GDE TY</h1>
             <p class="hero-subtitle">Жесткий контроль качества. Доставка по Астане за 60 минут.</p>
-            <a href="#catalog" class="btn btn-red" style="font-size: 1.5rem;">ВЫБРАТЬ СВОЙ CHAOS →</a>
+            <a href="#catalog" class="btn btn-red" style="font-size: 1.3rem;">ВЫБРАТЬ СВОЙ CHAOS →</a>
         </div>
     </section>
 
@@ -261,7 +271,7 @@
     </section>
 
     <section id="how" class="how-it-works">
-        <h2 class="section-title" style="background: var(--bg-dirty); color: var(--black); transform: rotate(-2deg); font-size: 3rem;">КАК МЫ РАБОТАЕМ</h2>
+        <h2 class="section-title" style="background: var(--bg-dirty); color: var(--black); transform: rotate(-2deg); font-size: 2.5rem;">КАК МЫ РАБОТАЕМ</h2>
         <div class="steps">
             <div class="step">
                 <div class="step-num">01</div>
