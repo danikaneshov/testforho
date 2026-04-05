@@ -16,63 +16,41 @@
         }
 
         * { margin: 0; padding: 0; box-sizing: border-box; }
-
         html { scroll-behavior: smooth; }
 
         body {
-            font-family: var(--font-body);
-            background-color: var(--bg-dirty);
-            color: var(--black);
+            font-family: var(--font-body); background-color: var(--bg-dirty); color: var(--black);
             overflow-x: hidden;
             background-image: 
                 radial-gradient(#00000015 1px, transparent 1px),
                 radial-gradient(#00000015 1px, transparent 1px);
-            background-size: 20px 20px;
-            background-position: 0 0, 10px 10px;
-            padding-bottom: 80px; /* Отступ для мобильной кнопки */
+            background-size: 20px 20px; background-position: 0 0, 10px 10px;
+            padding-bottom: 80px; 
         }
 
-        /* --- АНИМАЦИИ ПОЯВЛЕНИЯ (SCROLL REVEAL) --- */
-        .reveal {
-            opacity: 0;
-            transform: translateY(40px);
-            transition: all 0.6s cubic-bezier(0.25, 0.46, 0.45, 0.94);
-        }
-        .reveal.active {
-            opacity: 1;
-            transform: translateY(0);
-        }
+        /* --- АНИМАЦИИ --- */
+        .reveal { opacity: 0; transform: translateY(40px); transition: all 0.6s cubic-bezier(0.25, 0.46, 0.45, 0.94); }
+        .reveal.active { opacity: 1; transform: translateY(0); }
 
         /* --- КНОПКИ --- */
         .btn {
             display: inline-flex; justify-content: center; align-items: center;
-            font-family: var(--font-body); font-weight: 900;
-            text-transform: uppercase; padding: 15px 30px;
-            background: var(--cyan); color: var(--black);
-            text-decoration: none; border: 4px solid var(--black);
-            box-shadow: 4px 4px 0px var(--black);
-            transition: transform 0.2s, box-shadow 0.2s, background 0.2s;
-            font-size: 1.1rem; letter-spacing: 1px;
+            font-family: var(--font-body); font-weight: 900; text-transform: uppercase;
+            padding: 15px 30px; background: var(--cyan); color: var(--black);
+            text-decoration: none; border: 4px solid var(--black); box-shadow: 4px 4px 0px var(--black);
+            transition: transform 0.2s, box-shadow 0.2s; font-size: 1.1rem; letter-spacing: 1px;
         }
-        .btn:hover {
-            transform: translate(-2px, -2px);
-            box-shadow: 6px 6px 0px var(--black);
-        }
-        .btn:active {
-            transform: translate(4px, 4px);
-            box-shadow: 0px 0px 0px var(--black);
-        }
+        .btn:hover { transform: translate(-2px, -2px); box-shadow: 6px 6px 0px var(--black); }
+        .btn:active { transform: translate(4px, 4px); box-shadow: 0px 0px 0px var(--black); }
         .btn-red { background: var(--red); color: white; }
         .btn-black { background: var(--black); color: white; }
 
-        /* --- ПЛАВАЮЩАЯ КНОПКА (МОБИЛКИ) --- */
         .mobile-fab {
-            position: fixed; bottom: 15px; left: 5%; width: 90%;
-            z-index: 999; display: none; text-align: center;
-            font-size: 1.2rem; padding: 18px; border-radius: 0;
-            animation: pulse 2s infinite;
+            position: fixed; bottom: 15px; left: 5%; width: 90%; z-index: 999; display: none;
+            text-align: center; font-size: 1.2rem; padding: 18px; border-radius: 0;
+            animation: pulse-shadow 2s infinite;
         }
-        @keyframes pulse {
+        @keyframes pulse-shadow {
             0% { box-shadow: 0 0 0 0 rgba(230, 0, 35, 0.7); }
             70% { box-shadow: 0 0 0 10px rgba(230, 0, 35, 0); }
             100% { box-shadow: 0 0 0 0 rgba(230, 0, 35, 0); }
@@ -80,15 +58,13 @@
 
         /* --- AGE GATE --- */
         #age-gate {
-            position: fixed; inset: 0; background: rgba(18, 18, 18, 0.99);
-            z-index: 10000; display: flex; flex-direction: column;
-            justify-content: center; align-items: center; text-align: center; padding: 20px; color: white;
-            transition: opacity 0.4s ease;
+            position: fixed; inset: 0; background: rgba(18, 18, 18, 0.99); z-index: 10000;
+            display: flex; flex-direction: column; justify-content: center; align-items: center;
+            text-align: center; padding: 20px; color: white; transition: opacity 0.4s ease;
         }
         #age-gate h2 {
-            font-family: var(--font-body); font-weight: 900;
-            font-size: clamp(3rem, 8vw, 6rem); color: var(--red);
-            margin-bottom: 20px; text-transform: uppercase;
+            font-family: var(--font-body); font-weight: 900; font-size: clamp(3rem, 8vw, 6rem);
+            color: var(--red); margin-bottom: 20px; text-transform: uppercase;
         }
         #age-gate p { font-size: 1.2rem; font-weight: 500; max-width: 500px; margin-bottom: 40px; }
         .age-buttons { display: flex; gap: 20px; flex-wrap: wrap; justify-content: center; }
@@ -97,24 +73,39 @@
         header {
             padding: 15px 5vw; display: flex; justify-content: space-between; align-items: center;
             border-bottom: 4px solid var(--black); background: rgba(218, 212, 199, 0.95);
-            backdrop-filter: blur(5px); position: sticky; top: 0; z-index: 100;
+            backdrop-filter: blur(5px); position: sticky; top: 0; z-index: 100; flex-wrap: wrap; gap: 15px;
         }
+        .logo-wrapper { display: flex; align-items: center; gap: 20px; }
         .logo {
             font-family: var(--font-vandal); font-size: 2.2rem; line-height: 1;
-            color: var(--black); text-decoration: none;
-            transition: color 0.3s;
+            color: var(--black); text-decoration: none; transition: color 0.3s;
         }
         .logo:hover { color: var(--red); }
+        
+        /* Статус-бейдж в шапке */
+        .status-badge {
+            display: flex; align-items: center; gap: 8px; font-family: var(--font-body); font-weight: 900;
+            font-size: 0.8rem; background: var(--black); color: white; padding: 5px 12px;
+            text-transform: uppercase; border-radius: 20px; border: 2px solid var(--black);
+        }
+        .pulse-dot {
+            width: 8px; height: 8px; background: #00ff00; border-radius: 50%;
+            animation: dot-pulse 1.5s infinite;
+        }
+        @keyframes dot-pulse {
+            0% { transform: scale(1); opacity: 1; }
+            50% { transform: scale(1.5); opacity: 0.5; }
+            100% { transform: scale(1); opacity: 1; }
+        }
+
         nav { display: flex; gap: 30px; align-items: center; }
         nav a {
             font-family: var(--font-body); font-weight: 900; font-size: 1rem;
-            color: var(--black); text-decoration: none; text-transform: uppercase;
-            position: relative;
+            color: var(--black); text-decoration: none; text-transform: uppercase; position: relative;
         }
         nav a::after {
-            content: ''; position: absolute; width: 0; height: 3px;
-            bottom: -5px; left: 0; background-color: var(--red);
-            transition: width 0.3s;
+            content: ''; position: absolute; width: 0; height: 3px; bottom: -5px; left: 0;
+            background-color: var(--red); transition: width 0.3s;
         }
         nav a:hover::after { width: 100%; }
 
@@ -125,21 +116,18 @@
         }
         .hero-bg-splash {
             position: absolute; width: 100%; height: 100%; background: var(--black);
-            clip-path: polygon(0 0, 100% 0, 100% 85%, 0% 100%);
-            z-index: -1; top: 0; left: 0;
+            clip-path: polygon(0 0, 100% 0, 100% 85%, 0% 100%); z-index: -1; top: 0; left: 0;
         }
         .hero-content { text-align: center; color: white; max-width: 900px; }
-        .hero-title {
-            font-family: var(--font-vandal); font-size: clamp(3rem, 10vw, 8rem);
-            line-height: 0.9; margin-bottom: 20px;
-        }
+        .hero-title { font-family: var(--font-vandal); font-size: clamp(3rem, 10vw, 8rem); line-height: 0.9; margin-bottom: 20px; }
         .hero-subtitle { font-size: 1.2rem; font-weight: 800; margin-bottom: 40px; text-transform: uppercase; }
 
-        /* --- БЕГУЩАЯ СТРОКА --- */
+        /* --- БЕГУЩАЯ СТРОКА (ВЕРНУЛ НАИСКОСОК) --- */
         .marquee-wrapper {
             background: var(--red); color: white; padding: 15px 0;
             border-top: 4px solid var(--black); border-bottom: 4px solid var(--black);
-            width: 100%; position: relative; z-index: 10; overflow: hidden; white-space: nowrap;
+            width: 105%; position: relative; z-index: 10; overflow: hidden; white-space: nowrap;
+            margin-left: -2.5%; margin-top: -30px; transform: rotate(-2deg);
         }
         .marquee {
             display: inline-block; font-family: var(--font-body); font-weight: 900;
@@ -156,38 +144,27 @@
             display: inline-block; background: var(--black); color: white;
             padding: 10px 20px; margin-bottom: 50px; text-transform: uppercase;
         }
-        
         .grid {
-            display: flex; gap: 30px; padding: 20px 5vw 40px;
-            overflow-x: auto; scroll-snap-type: x mandatory;
-            -ms-overflow-style: none; scrollbar-width: none;
-            justify-content: center; /* Центрируем на ПК */
+            display: flex; gap: 30px; padding: 20px 5vw 40px; overflow-x: auto;
+            scroll-snap-type: x mandatory; -ms-overflow-style: none; scrollbar-width: none;
+            justify-content: center;
         }
         .grid::-webkit-scrollbar { display: none; }
-        
         .card {
             background: white; border: 4px solid var(--black); padding: 20px;
-            min-width: 320px; max-width: 350px; flex: 0 0 auto;
-            box-shadow: 6px 6px 0px rgba(0,0,0,1);
-            scroll-snap-align: center; text-align: left;
-            transition: transform 0.3s ease, box-shadow 0.3s ease;
+            min-width: 320px; max-width: 350px; flex: 0 0 auto; box-shadow: 6px 6px 0px rgba(0,0,0,1);
+            scroll-snap-align: center; text-align: left; transition: transform 0.3s ease, box-shadow 0.3s ease;
         }
-        .card:hover {
-            transform: translateY(-10px);
-            box-shadow: 10px 10px 0px rgba(0,0,0,1);
-        }
+        .card:hover { transform: translateY(-10px); box-shadow: 10px 10px 0px rgba(0,0,0,1); }
 
-        /* --- ТИПОГРАФИЧЕСКИЕ АРТЫ ВМЕСТО ФОТО --- */
         .card-art {
-            height: 250px; border: 4px solid var(--black);
-            margin-bottom: 20px; display: flex; flex-direction: column; 
-            align-items: center; justify-content: center;
+            height: 250px; border: 4px solid var(--black); margin-bottom: 20px;
+            display: flex; flex-direction: column; align-items: center; justify-content: center;
             font-family: var(--font-vandal); position: relative; overflow: hidden;
         }
         .art-bg-1 { background: repeating-linear-gradient(45deg, #fff, #fff 10px, var(--cyan) 10px, var(--cyan) 20px); }
         .art-bg-2 { background: repeating-linear-gradient(-45deg, #121212, #121212 10px, var(--red) 10px, var(--red) 20px); color: white; }
         .art-bg-3 { background: var(--black); color: white; }
-        
         .art-text { font-size: 5rem; z-index: 2; text-shadow: 3px 3px 0px var(--black); }
         .art-bg-2 .art-text { text-shadow: 3px 3px 0px var(--black); }
         .art-bg-3 .art-text { text-shadow: 3px 3px 0px var(--red); font-size: 6rem; }
@@ -196,7 +173,7 @@
         .card-desc { font-weight: 500; font-size: 1rem; margin-bottom: 20px; min-height: 40px; }
         .card-price { font-family: var(--font-vandal); font-size: 2rem; margin-bottom: 20px; color: var(--red); }
 
-        /* --- FAQ --- */
+        /* --- FAQ (ИСПРАВЛЕНО ИСЧЕЗНОВЕНИЕ) --- */
         .faq { padding: 50px 5vw 80px; max-width: 800px; margin: 0 auto; }
         .faq-item { margin-bottom: 15px; border: 4px solid var(--black); background: white; }
         .faq-question {
@@ -207,11 +184,17 @@
         }
         .faq-question:hover { background: #f0f0f0; }
         .faq-icon { font-family: var(--font-vandal); font-size: 1.5rem; transition: transform 0.3s; color: var(--red); }
+        
+        /* Исправленная логика анимации FAQ */
         .faq-answer {
-            max-height: 0; overflow: hidden; transition: max-height 0.4s ease;
-            padding: 0 20px; font-weight: 500; line-height: 1.6; background: var(--bg-dirty);
+            max-height: 0; overflow: hidden; transition: max-height 0.4s ease; background: var(--bg-dirty);
         }
-        .faq-item.active .faq-answer { max-height: 400px; padding: 20px; border-top: 4px solid var(--black); }
+        .faq-item.active .faq-answer {
+            max-height: 500px; /* Берем с запасом, текст не пропадет */
+        }
+        .faq-text-inner {
+            padding: 20px; border-top: 4px solid var(--black); font-weight: 500; line-height: 1.6;
+        }
         .faq-item.active .faq-icon { transform: rotate(45deg); }
 
         /* --- ФУТЕР --- */
@@ -220,9 +203,9 @@
 
         /* --- АДАПТИВ --- */
         @media (max-width: 768px) {
+            header { justify-content: center; flex-direction: column; }
             header nav { display: none; }
             .mobile-fab { display: flex; }
-            body { padding-bottom: 100px; }
             .grid { justify-content: flex-start; padding-left: 5vw; padding-right: 5vw; }
             .card { min-width: 85vw; }
             .hero-title { font-size: 3.5rem; }
@@ -241,10 +224,15 @@
     </div>
 
     <header>
-        <a href="#" class="logo">dám dym</a>
+        <div class="logo-wrapper">
+            <a href="#" class="logo">dám dym</a>
+            <div class="status-badge">
+                <span class="pulse-dot"></span> 24/7 ONLINE
+            </div>
+        </div>
         <nav>
             <a href="#catalog">Аппараты</a>
-            <a href="#faq">FAQ</a>
+            <a href="#faq">Условия</a>
             <a href="https://wa.me/77000000000" target="_blank" class="btn btn-cyan" style="padding: 10px 20px; font-size: 0.9rem;">WHATSAPP</a>
         </nav>
     </header>
@@ -253,15 +241,15 @@
         <div class="hero-bg-splash"></div>
         <div class="hero-content reveal">
             <h1 class="hero-title">DYM TAM,<br>GDE TY</h1>
-            <p class="hero-subtitle">Доставка кальянов по Астане 24/7. Привезем за 60 минут.</p>
+            <p class="hero-subtitle">Доставка кальянов по Астане 24/7. Привезем за 60 минут. Никаких предоплат.</p>
             <a href="#catalog" class="btn btn-red">ВЫБРАТЬ АППАРАТ</a>
         </div>
     </section>
 
     <div class="marquee-wrapper">
         <div class="marquee">
-            <span>⚡️ ДОСТАВКА 24/7</span><span>🔥 ПРЕМИУМ ТАБАК</span><span>💨 ПРИВЕЗЕМ ЗА ЧАС</span><span>🔞 СТРОГО 21+</span>
-            <span>⚡️ ДОСТАВКА 24/7</span><span>🔥 ПРЕМИУМ ТАБАК</span><span>💨 ПРИВЕЗЕМ ЗА ЧАС</span><span>🔞 СТРОГО 21+</span>
+            <span>⚡️ ДОСТАВКА 24/7</span><span>🔥 ПРЕМИУМ ТАБАК</span><span>⛔ НИКАКИХ ПРЕДОПЛАТ</span><span>💸 ОПЛАТА НА МЕСТЕ</span>
+            <span>⚡️ ДОСТАВКА 24/7</span><span>🔥 ПРЕМИУМ ТАБАК</span><span>⛔ НИКАКИХ ПРЕДОПЛАТ</span><span>💸 ОПЛАТА НА МЕСТЕ</span>
         </div>
     </div>
 
@@ -269,11 +257,8 @@
         <h2 class="section-title reveal">АРСЕНАЛ</h2>
         
         <div class="grid">
-            
             <div class="card reveal">
-                <div class="card-art art-bg-1">
-                    <div class="art-text">01</div>
-                </div>
+                <div class="card-art art-bg-1"><div class="art-text">01</div></div>
                 <h3 class="card-title">BASIC PUNK</h3>
                 <p class="card-desc">Классическая чаша + 1 забивка (на выбор)</p>
                 <p class="card-price">10 000 ₸</p>
@@ -281,9 +266,7 @@
             </div>
 
             <div class="card reveal" style="transition-delay: 0.1s;">
-                <div class="card-art art-bg-2">
-                    <div class="art-text">02</div>
-                </div>
+                <div class="card-art art-bg-2"><div class="art-text">02</div></div>
                 <h3 class="card-title">RED VANDAL</h3>
                 <p class="card-desc">Премиум табак + 2 забивки + плитка</p>
                 <p class="card-price">15 000 ₸</p>
@@ -291,46 +274,51 @@
             </div>
 
             <div class="card reveal" style="transition-delay: 0.2s;">
-                <div class="card-art art-bg-3">
-                    <div class="art-text">X</div>
-                </div>
+                <div class="card-art art-bg-3"><div class="art-text">X</div></div>
                 <h3 class="card-title">FULL CHAOS</h3>
                 <p class="card-desc">Фруктовая чаша + 3 забивки + обслуживание</p>
                 <p class="card-price">25 000 ₸</p>
                 <a href="https://wa.me/77000000000?text=Салам! Хочу заказать FULL CHAOS" target="_blank" class="btn" style="display: block; text-align: center;">ЗАБРАТЬ</a>
             </div>
-
         </div>
     </section>
 
     <section id="faq" class="faq">
-        <h2 class="section-title reveal" style="margin-bottom: 30px;">ЧАСТЫЕ ВОПРОСЫ</h2>
+        <h2 class="section-title reveal" style="margin-bottom: 30px;">УСЛОВИЯ И ВОПРОСЫ</h2>
         
         <div class="faq-item reveal">
             <button class="faq-question">Что нужно для залога? <span class="faq-icon">+</span></button>
             <div class="faq-answer">
-                <p>Мы работаем по стандарту: в залог оставляется оригинал удостоверения личности (или паспорта/прав) до момента возврата оборудования курьеру.</p>
+                <div class="faq-text-inner">
+                    <p>Никаких документов и удостоверений оставлять не нужно! Мы берем только <strong>депозит 10 000 ₸</strong>. Деньги возвращаются вам на карту сразу же после того, как курьер заберет аппарат в целости.</p>
+                </div>
+            </div>
+        </div>
+
+        <div class="faq-item reveal">
+            <button class="faq-question">Как происходит оплата? <span class="faq-icon">+</span></button>
+            <div class="faq-answer">
+                <div class="faq-text-inner">
+                    <p><strong>Никаких онлайн-предоплат на сайте.</strong> Вы оплачиваете заказ строго по факту: курьер привозит кальян, вы всё проверяете и только тогда оплачиваете аренду и залог (наличными или переводом).</p>
+                </div>
             </div>
         </div>
 
         <div class="faq-item reveal">
             <button class="faq-question">Что входит в комплект? <span class="faq-icon">+</span></button>
             <div class="faq-answer">
-                <p>Сам аппарат, забитая чаша (или несколько, в зависимости от тарифа), угли, одноразовые мундштуки, щипцы и компактная электроплитка для розжига.</p>
-            </div>
-        </div>
-
-        <div class="faq-item reveal">
-            <button class="faq-question">Как происходит возврат? <span class="faq-icon">+</span></button>
-            <div class="faq-answer">
-                <p>Аренда дается на сутки (24 часа). Курьер свяжется с вами и приедет забрать аппарат. Мыть кальян не обязательно, мы всё сделаем сами.</p>
+                <div class="faq-text-inner">
+                    <p>Сам аппарат, забитая чаша (или несколько), угли, одноразовые мундштуки, щипцы и компактная электроплитка для розжига.</p>
+                </div>
             </div>
         </div>
         
         <div class="faq-item reveal">
             <button class="faq-question">Вы работаете круглосуточно? <span class="faq-icon">+</span></button>
             <div class="faq-answer">
-                <p>Да, мы принимаем заказы и доставляем 24/7. Ночью доставка может занимать чуть больше времени, уточняйте у оператора в WhatsApp.</p>
+                <div class="faq-text-inner">
+                    <p>Да, мы принимаем заказы и доставляем кальяны по Астане <strong>24/7</strong>. Ночью доставка может занимать чуть больше времени, уточняйте у оператора.</p>
+                </div>
             </div>
         </div>
     </section>
@@ -342,11 +330,11 @@
     </footer>
 
     <a href="https://wa.me/77000000000" target="_blank" class="btn btn-red mobile-fab">
-        💬 ЗАКАЗАТЬ (24/7)
+        💬 ЗАКАЗАТЬ (БЕЗ ПРЕДОПЛАТЫ)
     </a>
 
     <script>
-        // 1. Проверка возраста (с плавным исчезновением)
+        // 1. Проверка возраста
         document.addEventListener("DOMContentLoaded", () => {
             const ageGate = document.getElementById('age-gate');
             if (!localStorage.getItem('ageVerified')) {
@@ -363,10 +351,10 @@
             setTimeout(() => {
                 ageGate.style.display = 'none';
                 document.body.style.overflow = 'auto';
-            }, 400); // Ждем окончания CSS анимации
+            }, 400); 
         }
 
-        // 2. Логика FAQ (Аккордеон)
+        // 2. Логика FAQ (с исправленной анимацией)
         const faqItems = document.querySelectorAll('.faq-item');
         faqItems.forEach(item => {
             const btn = item.querySelector('.faq-question');
@@ -377,21 +365,20 @@
             });
         });
 
-        // 3. Анимации при скролле (Intersection Observer)
+        // 3. Анимации при скролле
         const revealElements = document.querySelectorAll('.reveal');
         const revealObserver = new IntersectionObserver((entries, observer) => {
             entries.forEach(entry => {
                 if (entry.isIntersecting) {
                     entry.target.classList.add('active');
-                    observer.unobserve(entry.target); // Анимируем только один раз
+                    observer.unobserve(entry.target);
                 }
             });
         }, {
             root: null,
-            threshold: 0.1, // Срабатывает, когда видно 10% элемента
+            threshold: 0.1,
             rootMargin: "0px 0px -50px 0px"
         });
-
         revealElements.forEach(el => revealObserver.observe(el));
     </script>
 </body>
