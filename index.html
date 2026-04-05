@@ -134,7 +134,7 @@
         }
         @media (min-width: 1400px) { 
             .grid { justify-content: center; } 
-            .swipe-hint { display: none; } /* Прячем подсказку на больших экранах */
+            .swipe-hint { display: none; }
         }
         .grid::-webkit-scrollbar { display: none; }
         
@@ -253,7 +253,7 @@
                     <p class="card-desc">Отличный выбор для комфортного вечера одному или в паре.</p>
                     <p class="card-kit">В комплекте: 1 аппарат в полной сборке, 1 порция табака, 4 угля, электроплитка, щипцы, мундштуки.</p>
                     <p class="card-price"><span class="old-price">8 750 ₸</span> 7 000 ₸</p>
-                    <a href="https://wa.me/77000000000?text=Салам! Хочу заказать тариф SOLO за 7000" target="_blank" class="btn btn-black">ЗАКАЗАТЬ</a>
+                    <a href="#" class="btn btn-black order-link">ЗАКАЗАТЬ</a>
                 </div>
 
                 <div class="card reveal" style="transition-delay: 0.1s;">
@@ -262,7 +262,7 @@
                     <p class="card-desc">Самый популярный. Взять две забивки — выгоднее, чем докупать позже!</p>
                     <p class="card-kit">В комплекте: 1 аппарат в полной сборке, 2 порции табака, 8 углей, электроплитка, щипцы, мундштуки.</p>
                     <p class="card-price"><span class="old-price">11 250 ₸</span> 9 000 ₸</p>
-                    <a href="https://wa.me/77000000000?text=Салам! Хочу заказать тариф DOUBLE за 9000" target="_blank" class="btn btn-red">ЗАКАЗАТЬ</a>
+                    <a href="#" class="btn btn-red order-link">ЗАКАЗАТЬ</a>
                 </div>
 
                 <div class="card reveal" style="transition-delay: 0.2s;">
@@ -271,7 +271,7 @@
                     <p class="card-desc">Идеальный набор для друзей с приятной скидкой за объем.</p>
                     <p class="card-kit">В комплекте: 2 аппарата, 4 порции табака, 16 углей, 2 плитки, 2 пары щипцов и мундштуки.</p>
                     <p class="card-price"><span class="old-price">20 000 ₸</span> 16 000 ₸</p>
-                    <a href="https://wa.me/77000000000?text=Салам! Хочу заказать тариф COMPANY за 16000" target="_blank" class="btn">ЗАКАЗАТЬ</a>
+                    <a href="#" class="btn order-link">ЗАКАЗАТЬ</a>
                 </div>
 
                 <div class="card reveal" style="transition-delay: 0.3s;">
@@ -280,7 +280,7 @@
                     <p class="card-desc">Кейтеринг на вашем празднике, дне рождении или корпоративе.</p>
                     <p class="card-kit">В услугу входит: Выезд мастера с оборудованием, проф. забивки, контроль жара и замена углей.</p>
                     <p class="card-price-ru">ИНДИВИДУАЛЬНО</p>
-                    <a href="https://wa.me/77000000000?text=Салам! Хочу обсудить кейтеринг (HOOKAH MASTER)" target="_blank" class="btn btn-black">ЗАКАЗАТЬ</a>
+                    <a href="#" class="btn btn-black order-link">ЗАКАЗАТЬ</a>
                 </div>
 
             </div>
@@ -325,11 +325,22 @@
         </footer>
     </div>
 
-    <a href="https://wa.me/77000000000" target="_blank" class="btn btn-red mobile-fab">
+    <a href="#" class="btn btn-red mobile-fab order-link">
         💬 ЗАКАЗАТЬ
     </a>
 
     <script>
+        // ==============================================================
+        // --- ССЫЛКА НА ПРИЛОЖЕНИЕ (МЕНЯТЬ ТОЛЬКО ЗДЕСЬ) ---
+        // ==============================================================
+        const APP_URL = "https://pwa2-if31.onrender.com";
+
+        // Этот код сам находит все кнопки ЗАКАЗАТЬ и подставляет нужную ссылку
+        document.querySelectorAll('.order-link').forEach(link => {
+            link.href = APP_URL;
+        });
+        // ==============================================================
+
         document.addEventListener("DOMContentLoaded", () => {
             const ageGate = document.getElementById('age-gate');
             if (!localStorage.getItem('ageVerified')) { document.body.style.overflow = 'hidden'; } 
