@@ -3,16 +3,17 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>ДӘМ ДЫМ | Доставка кальянов Астана</title>
-    <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@500;800;900&family=Permanent+Marker&display=swap" rel="stylesheet">
+    <title>dám dym | Кальяны в Астане</title>
+    <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@500;900&family=Permanent+Marker&display=swap" rel="stylesheet">
     <style>
         :root {
             --bg-dirty: #dad4c7;
             --black: #121212;
             --red: #e60023;
             --cyan: #00e5ff;
-            --font-main: 'Montserrat', sans-serif;
-            --font-vandal: 'Permanent Marker', cursive;
+            /* Шрифты */
+            --font-body: 'Montserrat', sans-serif; /* Для простого текста */
+            --font-vandal: 'Permanent Marker', cursive; /* Для ВСЕХ заголовков */
         }
 
         * {
@@ -20,11 +21,11 @@
         }
 
         body {
-            font-family: var(--font-main);
+            font-family: var(--font-body);
             background-color: var(--bg-dirty);
             color: var(--black);
             overflow-x: hidden;
-            /* Создаем CSS-шум и текстуру картона */
+            /* Гранж-текстура через CSS-шум */
             background-image: 
                 radial-gradient(#0000001a 1px, transparent 1px),
                 radial-gradient(#0000001a 1px, transparent 1px);
@@ -35,10 +36,10 @@
         /* --- UI ЭЛЕМЕНТЫ --- */
         .btn {
             display: inline-block;
-            font-family: var(--font-main);
-            font-weight: 900;
+            font-family: var(--font-vandal); /* Шрифт вандала */
+            font-weight: 400; /* Не используем bold для этого шрифта */
             text-transform: uppercase;
-            padding: 18px 35px;
+            padding: 15px 30px;
             background: var(--cyan);
             color: var(--black);
             text-decoration: none;
@@ -46,10 +47,11 @@
             box-shadow: 6px 6px 0px var(--black);
             transition: all 0.1s ease;
             cursor: pointer;
-            font-size: 1.1rem;
+            font-size: 1.2rem;
+            transform: rotate(-1deg);
         }
         .btn:active {
-            transform: translate(4px, 4px);
+            transform: translate(4px, 4px) rotate(0deg);
             box-shadow: 2px 2px 0px var(--black);
         }
         .btn-red { background: var(--red); color: white; }
@@ -58,7 +60,7 @@
         /* --- ВСПЛЫВАЮЩЕЕ ОКНО 21+ --- */
         #age-gate {
             position: fixed; inset: 0;
-            background: rgba(18, 18, 18, 0.98);
+            background: rgba(18, 18, 18, 0.99);
             z-index: 10000;
             display: flex; flex-direction: column;
             justify-content: center; align-items: center;
@@ -67,10 +69,11 @@
         }
         #age-gate h2 {
             font-family: var(--font-vandal);
-            font-size: 4rem; color: var(--red);
-            transform: rotate(-3deg); margin-bottom: 20px;
+            font-size: clamp(4rem, 10vw, 8rem); color: var(--red);
+            transform: rotate(-5deg); margin-bottom: 20px;
+            text-shadow: 5px 5px 0px rgba(0,0,0,1);
         }
-        #age-gate p { font-size: 1.2rem; max-width: 500px; margin-bottom: 40px; line-height: 1.5; }
+        #age-gate p { font-size: 1.2rem; font-weight: 500; max-width: 500px; margin-bottom: 40px; line-height: 1.5; }
         .age-buttons { display: flex; gap: 20px; flex-wrap: wrap; justify-content: center; }
 
         /* --- ШАПКА --- */
@@ -83,21 +86,23 @@
         }
         .logo {
             font-family: var(--font-vandal);
-            font-size: 2.5rem; line-height: 1;
+            font-size: 3.5rem; line-height: 1;
             color: var(--black);
-            text-shadow: 2px 2px 0px var(--cyan);
-            transform: rotate(-2deg);
+            text-shadow: 3px 3px 0px var(--cyan);
+            transform: rotate(-3deg);
+            margin-right: 20px;
         }
         nav a {
-            font-weight: 800; color: var(--black);
-            text-decoration: none; margin: 0 15px;
+            font-family: var(--font-vandal); /* ШРИФТ ВАНДАЛА */
+            font-size: 1.2rem;
+            color: var(--black); text-decoration: none; margin: 0 10px;
             text-transform: uppercase; transition: color 0.2s;
         }
         nav a:hover { color: var(--red); }
 
         /* --- ГЕРОЙ ЭКРАН --- */
         .hero {
-            min-height: 80vh;
+            min-height: 85vh;
             display: flex; align-items: center; justify-content: center;
             padding: 50px 5vw; position: relative; overflow: hidden;
         }
@@ -109,37 +114,37 @@
             z-index: -1; top: -20%; left: -10%;
         }
         .hero-content {
-            text-align: center; color: white; max-width: 800px;
+            text-align: center; color: white; max-width: 1000px;
         }
         .hero-title {
-            font-family: var(--font-vandal);
-            font-size: clamp(3rem, 8vw, 7rem);
+            font-family: var(--font-vandal); /* ШРИФТ ВАНДАЛА */
+            font-size: clamp(4rem, 12vw, 10rem);
             line-height: 0.9; margin-bottom: 20px;
-            text-shadow: 4px 4px 0px var(--red);
+            text-shadow: 6px 6px 0px var(--red);
             transform: rotate(-2deg);
         }
         .hero-subtitle {
-            font-size: 1.5rem; font-weight: 800;
+            font-size: 1.5rem; font-weight: 900;
             margin-bottom: 40px; text-transform: uppercase;
         }
 
         /* --- КАТАЛОГ --- */
-        .catalog { padding: 80px 5vw; text-align: center; }
+        .catalog { padding: 100px 5vw; text-align: center; }
         .section-title {
-            font-family: var(--font-vandal);
-            font-size: 3rem; margin-bottom: 50px;
+            font-family: var(--font-vandal); /* ШРИФТ ВАНДАЛА */
+            font-size: 4rem; margin-bottom: 60px;
             display: inline-block;
             background: var(--black); color: white;
-            padding: 10px 20px; transform: rotate(1deg);
+            padding: 10px 30px; transform: rotate(1deg);
         }
         .grid {
-            display: grid; grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
-            gap: 40px; justify-items: center;
+            display: grid; grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
+            gap: 50px; justify-items: center;
         }
         .card {
             background: white; border: 5px solid var(--black);
-            padding: 15px; width: 100%; max-width: 350px;
-            box-shadow: 8px 8px 0px rgba(0,0,0,1);
+            padding: 15px; width: 100%; max-width: 380px;
+            box-shadow: 10px 10px 0px rgba(0,0,0,1);
             transition: transform 0.2s;
         }
         .card:hover { transform: translateY(-10px) rotate(-1deg); }
@@ -150,44 +155,47 @@
             font-weight: 900; color: #aaa;
         }
         .card-title {
-            font-family: var(--font-vandal); font-size: 1.8rem;
-            margin-bottom: 10px; text-transform: uppercase;
+            font-family: var(--font-vandal); /* ШРИФТ ВАНДАЛА */
+            font-size: 2rem; margin-bottom: 10px; text-transform: uppercase;
         }
         .card-price {
-            font-weight: 900; font-size: 1.4rem; margin-bottom: 20px;
-            color: var(--red);
+            font-family: var(--font-vandal); /* ШРИФТ ВАНДАЛА */
+            font-size: 1.8rem; margin-bottom: 25px;
+            color: var(--red); text-shadow: 2px 2px 0px rgba(0,0,0,1);
         }
 
         /* --- КАК РАБОТАЕМ --- */
         .how-it-works {
-            background: var(--cyan); padding: 80px 5vw;
+            background: var(--cyan); padding: 100px 5vw;
             border-top: 5px solid var(--black); border-bottom: 5px solid var(--black);
         }
         .steps {
-            display: flex; justify-content: space-around; flex-wrap: wrap; gap: 30px;
-            text-align: center; margin-top: 40px;
+            display: flex; justify-content: space-around; flex-wrap: wrap; gap: 40px;
+            text-align: center; margin-top: 50px;
         }
-        .step { flex: 1; min-width: 200px; }
+        .step { flex: 1; min-width: 250px; }
         .step-num {
-            font-family: var(--font-vandal); font-size: 4rem;
-            color: var(--bg-dirty); text-shadow: 3px 3px 0 var(--black);
+            font-family: var(--font-vandal); /* ШРИФТ ВАНДАЛА */
+            font-size: 6rem;
+            color: var(--bg-dirty); text-shadow: 4px 4px 0 var(--black);
             margin-bottom: 10px; line-height: 1;
         }
-        .step-text { font-weight: 900; font-size: 1.2rem; text-transform: uppercase; }
+        .step-text { font-family: var(--font-vandal); /* ШРИФТ ВАНДАЛА */ font-size: 1.5rem; text-transform: uppercase; }
 
         /* --- ФУТЕР --- */
         footer {
-            padding: 50px 5vw; background: var(--black); color: white;
+            padding: 80px 5vw; background: var(--black); color: white;
             text-align: center;
         }
-        footer h2 { font-family: var(--font-vandal); font-size: 2rem; margin-bottom: 20px; }
-        .footer-contacts { margin-bottom: 30px; font-weight: 800; font-size: 1.2rem; }
+        footer .logo { text-shadow: 3px 3px 0px var(--red); color: white; margin-bottom: 20px; display: inline-block; }
+        .footer-contacts { margin-bottom: 40px; font-weight: 900; font-size: 1.3rem; }
 
         @media (max-width: 768px) {
             header { flex-direction: column; gap: 15px; }
-            nav { display: flex; flex-wrap: wrap; justify-content: center; gap: 10px; }
+            nav { display: flex; flex-wrap: wrap; justify-content: center; gap: 15px; }
             nav a { margin: 0; }
-            .hero-title { text-shadow: 2px 2px 0px var(--red); }
+            .hero-title { text-shadow: 3px 3px 0px var(--red); }
+            .section-title { font-size: 2.5rem; }
         }
     </style>
 </head>
@@ -203,21 +211,21 @@
     </div>
 
     <header>
-        <div class="logo">ДӘМ ДЫМ</div>
+        <div class="logo">dám dym</div>
         <nav>
             <a href="#catalog">Аппараты</a>
             <a href="#how">Процесс</a>
             <a href="#contacts">Связь</a>
         </nav>
-        <a href="https://wa.me/77000000000?text=Салам! Хочу заказать кальян." target="_blank" class="btn" style="padding: 10px 20px; font-size: 0.9rem;">Написать в WA</a>
+        <a href="https://wa.me/77000000000?text=Салам! Хочу заказать кальян." target="_blank" class="btn btn-cyan" style="padding: 10px 20px; font-size: 1rem;">WhatsApp заказ</a>
     </header>
 
     <section class="hero">
         <div class="hero-bg-splash"></div>
         <div class="hero-content">
-            <h1 class="hero-title">ДЫМ ТАМ,<br>ГДЕ ТЫ</h1>
+            <h1 class="hero-title">DYM TAM,<br>GDE TY</h1>
             <p class="hero-subtitle">Жесткий контроль качества. Доставка по Астане за 60 минут.</p>
-            <a href="#catalog" class="btn btn-red">ВЫБРАТЬ СВОЙ CHAOS</a>
+            <a href="#catalog" class="btn btn-red" style="font-size: 1.5rem;">ВЫБРАТЬ СВОЙ CHAOS →</a>
         </div>
     </section>
 
@@ -226,7 +234,7 @@
         <div class="grid">
             
             <div class="card">
-                <div class="card-img">[ФОТО КАЛЬЯНА 1]</div>
+                <div class="card-img">[ФОТО 1]</div>
                 <h3 class="card-title">BASIC PUNK</h3>
                 <p style="margin-bottom: 10px; font-weight: 500;">Классическая чаша + 1 забивка (на выбор)</p>
                 <p class="card-price">10 000 ₸</p>
@@ -234,7 +242,7 @@
             </div>
 
             <div class="card" style="transform: rotate(2deg);">
-                <div class="card-img">[ФОТО КАЛЬЯНА 2]</div>
+                <div class="card-img">[ФОТО 2]</div>
                 <h3 class="card-title">RED VANDAL</h3>
                 <p style="margin-bottom: 10px; font-weight: 500;">Премиум табак + 2 забивки + плитка</p>
                 <p class="card-price">15 000 ₸</p>
@@ -242,9 +250,9 @@
             </div>
 
             <div class="card" style="transform: rotate(-1deg);">
-                <div class="card-img">[ФОТО КАЛЬЯНА 3]</div>
+                <div class="card-img">[ФОТО 3]</div>
                 <h3 class="card-title">FULL CHAOS</h3>
-                <p style="margin-bottom: 10px; font-weight: 500;">Фруктовая чаша + 3 забивки + обслуживание мастера</p>
+                <p style="margin-bottom: 10px; font-weight: 500;">Фруктовая чаша + 3 забивки + мастер</p>
                 <p class="card-price">25 000 ₸</p>
                 <a href="https://wa.me/77000000000?text=Хочу заказать FULL CHAOS за 25к" target="_blank" class="btn" style="display: block;">ЗАБРАТЬ</a>
             </div>
@@ -253,7 +261,7 @@
     </section>
 
     <section id="how" class="how-it-works">
-        <h2 class="section-title" style="background: var(--bg-dirty); color: var(--black); transform: rotate(-2deg);">КАК ЭТО РАБОТАЕТ</h2>
+        <h2 class="section-title" style="background: var(--bg-dirty); color: var(--black); transform: rotate(-2deg); font-size: 3rem;">КАК МЫ РАБОТАЕМ</h2>
         <div class="steps">
             <div class="step">
                 <div class="step-num">01</div>
@@ -275,13 +283,13 @@
     </section>
 
     <footer id="contacts">
-        <h2>ДӘМ ДЫМ</h2>
+        <div class="logo">dám dym</div>
         <div class="footer-contacts">
             <p>Астана, Казахстан</p>
             <p>Ежедневно с 14:00 до 03:00</p>
         </div>
         <a href="https://wa.me/77000000000?text=Салам! У меня есть вопрос." target="_blank" class="btn btn-red">СВЯЗАТЬСЯ С НАМИ</a>
-        <p style="margin-top: 40px; font-size: 0.8rem; color: #666;">© 2026 ДӘМ ДЫМ. Курение вредит вашему здоровью.</p>
+        <p style="margin-top: 50px; font-size: 0.8rem; font-weight: 500; color: #666;">© 2026 dám dym. Курение вредит вашему здоровью.</p>
     </footer>
 
     <script>
