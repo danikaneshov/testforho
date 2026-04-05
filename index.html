@@ -31,15 +31,14 @@
             background-size: 20px 20px; background-position: 0 0, 10px 10px;
         }
 
-        /* Обертка всего сайта (двойная защита от сдвигов) */
         .site-wrapper {
             width: 100%;
             overflow-x: hidden;
             position: relative;
-            padding-bottom: 100px; /* Отступ для плавающей кнопки внизу */
+            padding-bottom: 100px;
         }
 
-        /* --- АНИМАЦИИ --- */
+        /* --- АНИМАЦИИ ПОЯВЛЕНИЯ --- */
         .reveal { opacity: 0; transform: translateY(30px); transition: all 0.6s ease-out; }
         .reveal.active { opacity: 1; transform: translateY(0); }
 
@@ -55,7 +54,6 @@
         .btn-red { background: var(--red); color: white; }
         .btn-black { background: var(--black); color: white; }
 
-        /* Плавающая кнопка для телефонов */
         .mobile-fab {
             position: fixed; bottom: 15px; left: 5%; width: 90%; z-index: 9999; display: none;
             text-align: center; font-size: 1.1rem; padding: 18px; border-radius: 0;
@@ -81,7 +79,6 @@
         .logo-wrapper { display: flex; align-items: center; gap: 15px; }
         .logo { font-family: var(--font-vandal); font-size: 2.2rem; line-height: 1; color: var(--black); text-decoration: none; }
         
-        /* ОБНОВЛЕННЫЙ БЕЙДЖ СТАТУСА (В стиле стикера) */
         .status-badge {
             display: inline-flex; align-items: center; gap: 8px;
             font-family: var(--font-vandal); font-size: 1rem;
@@ -98,22 +95,17 @@
         nav { display: flex; gap: 20px; align-items: center; }
         nav a { font-family: var(--font-body); font-weight: 900; font-size: 1rem; color: var(--black); text-decoration: none; text-transform: uppercase; }
 
-        /* --- ИДЕАЛЬНО ПАРАЛЛЕЛЬНЫЙ СКОС (ГЕРОЙ + СТРОКА) --- */
+        /* --- ГЕРОЙ И БЕГУЩАЯ СТРОКА (СКОС) --- */
         .slant-master {
-            width: 110vw; margin-left: -5vw; /* Делаем шире экрана, чтобы скрыть пустоты по краям при наклоне */
-            transform: skewY(-4deg); /* Единый наклон для всего блока */
-            transform-origin: top left;
-            margin-top: -5vw; /* Подтягиваем наверх под шапку */
-            position: relative;
+            width: 110vw; margin-left: -5vw;
+            transform: skewY(-4deg); transform-origin: top left;
+            margin-top: -5vw; position: relative;
         }
         
-        .hero-bg {
-            background: var(--black);
-            padding: 150px 10vw 80px; /* Отступы с учетом наклона */
-        }
+        .hero-bg { background: var(--black); padding: 150px 10vw 80px; }
         
         .hero-content {
-            transform: skewY(4deg); /* Возвращаем текст в горизонтальное положение */
+            transform: skewY(4deg);
             text-align: center; color: white; max-width: 900px; margin: 0 auto;
         }
         .hero-title { font-family: var(--font-vandal); font-size: clamp(3rem, 10vw, 8rem); line-height: 0.9; margin-bottom: 20px; }
@@ -122,7 +114,7 @@
         .marquee-wrapper {
             background: var(--red); color: white; padding: 15px 0;
             border-top: 5px solid var(--black); border-bottom: 5px solid var(--black);
-            width: 100%; display: flex; overflow: hidden; /* Прячем ползунок строки */
+            width: 100%; display: flex; overflow: hidden;
         }
         .marquee {
             white-space: nowrap; font-family: var(--font-body); font-weight: 900;
@@ -167,7 +159,7 @@
         .card-desc { font-weight: 500; font-size: 1rem; margin-bottom: 20px; min-height: 40px; }
         .card-price { font-family: var(--font-vandal); font-size: 2rem; margin-bottom: 20px; color: var(--red); }
 
-        /* --- FAQ (ИСПРАВЛЕННЫЙ GRID-АККОРДЕОН) --- */
+        /* --- СТАТИЧНЫЙ FAQ БЕЗ БАГОВ --- */
         .faq { padding: 50px 5vw 80px; max-width: 800px; margin: 0 auto; }
         .faq-item { margin-bottom: 15px; border: 4px solid var(--black); background: white; }
         .faq-question {
@@ -175,16 +167,14 @@
             font-family: var(--font-body); font-weight: 900; font-size: 1.1rem;
             text-transform: uppercase; cursor: pointer; display: flex; justify-content: space-between; align-items: center;
         }
-        .faq-icon { font-family: var(--font-vandal); font-size: 1.5rem; transition: transform 0.3s; color: var(--red); }
+        .faq-icon { font-family: var(--font-vandal); font-size: 1.5rem; transition: transform 0.2s; color: var(--red); }
         
-        /* Магия Grid для плавного открытия без багов */
-        .faq-answer-grid {
-            display: grid; grid-template-rows: 0fr; transition: grid-template-rows 0.3s ease;
-            background: var(--bg-dirty);
-        }
-        .faq-item.active .faq-answer-grid { grid-template-rows: 1fr; }
-        .faq-answer-inner { overflow: hidden; } /* Скрывает контент, пока высота 0 */
+        /* Блок с ответом по умолчанию скрыт */
+        .faq-answer { display: none; background: var(--bg-dirty); }
         .faq-text { padding: 20px; border-top: 4px solid var(--black); font-weight: 500; line-height: 1.6; }
+        
+        /* При классе active блок мгновенно появляется */
+        .faq-item.active .faq-answer { display: block; }
         .faq-item.active .faq-icon { transform: rotate(45deg); }
 
         /* --- ФУТЕР --- */
@@ -279,44 +269,36 @@
             
             <div class="faq-item reveal">
                 <button class="faq-question">Что нужно для залога? <span class="faq-icon">+</span></button>
-                <div class="faq-answer-grid">
-                    <div class="faq-answer-inner">
-                        <div class="faq-text">
-                            <p>Никаких документов и удостоверений оставлять не нужно! Мы берем только <strong>депозит 10 000 ₸</strong>. Деньги возвращаются вам на карту сразу же после того, как курьер заберет аппарат в целости.</p>
-                        </div>
+                <div class="faq-answer">
+                    <div class="faq-text">
+                        <p>Никаких документов и удостоверений оставлять не нужно! Мы берем только <strong>депозит 10 000 ₸</strong>. Деньги возвращаются вам на карту сразу же после того, как курьер заберет аппарат в целости.</p>
                     </div>
                 </div>
             </div>
 
             <div class="faq-item reveal">
                 <button class="faq-question">Как происходит оплата? <span class="faq-icon">+</span></button>
-                <div class="faq-answer-grid">
-                    <div class="faq-answer-inner">
-                        <div class="faq-text">
-                            <p><strong>Никаких онлайн-предоплат на сайте.</strong> Вы оплачиваете заказ строго по факту: курьер привозит кальян, вы всё проверяете и только тогда оплачиваете аренду и залог (наличными или переводом).</p>
-                        </div>
+                <div class="faq-answer">
+                    <div class="faq-text">
+                        <p><strong>Никаких онлайн-предоплат на сайте.</strong> Вы оплачиваете заказ строго по факту: курьер привозит кальян, вы всё проверяете и только тогда оплачиваете аренду и залог (наличными или переводом).</p>
                     </div>
                 </div>
             </div>
 
             <div class="faq-item reveal">
                 <button class="faq-question">Что входит в комплект? <span class="faq-icon">+</span></button>
-                <div class="faq-answer-grid">
-                    <div class="faq-answer-inner">
-                        <div class="faq-text">
-                            <p>Сам аппарат, забитая чаша (или несколько), угли, одноразовые мундштуки, щипцы и компактная электроплитка для розжига.</p>
-                        </div>
+                <div class="faq-answer">
+                    <div class="faq-text">
+                        <p>Сам аппарат, забитая чаша (или несколько), угли, одноразовые мундштуки, щипцы и компактная электроплитка для розжига.</p>
                     </div>
                 </div>
             </div>
             
             <div class="faq-item reveal">
                 <button class="faq-question">Вы работаете круглосуточно? <span class="faq-icon">+</span></button>
-                <div class="faq-answer-grid">
-                    <div class="faq-answer-inner">
-                        <div class="faq-text">
-                            <p>Да, мы принимаем заказы и доставляем кальяны по Астане <strong>24/7</strong>. Ночью доставка может занимать чуть больше времени, уточняйте у оператора.</p>
-                        </div>
+                <div class="faq-answer">
+                    <div class="faq-text">
+                        <p>Да, мы принимаем заказы и доставляем кальяны по Астане <strong>24/7</strong>. Ночью доставка может занимать чуть больше времени, уточняйте у оператора.</p>
                     </div>
                 </div>
             </div>
@@ -328,8 +310,10 @@
             <p style="font-size: 0.8rem; color: #888;">© 2026 dám dym Astana. Курение вредит здоровью.</p>
         </footer>
 
-    </div> <a href="https://wa.me/77000000000" target="_blank" class="btn btn-red mobile-fab">
-        💬 ЗАКАЗАТЬ БЕЗ ПРЕДОПЛАТЫ
+    </div>
+
+    <a href="https://wa.me/77000000000" target="_blank" class="btn btn-red mobile-fab">
+        💬 ЗАКАЗАТЬ
     </a>
 
     <script>
