@@ -1,0 +1,282 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>ДӘМ ДЫМ | Кальян на дом в Астане</title>
+    <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;700;900&family=Permanent+Marker&family=Rubik+Mono+One&display=swap" rel="stylesheet">
+    <style>
+        /* Базовые стили и цвета */
+        :root {
+            --bg-color: #e6e1d6; /* Цвет картона/грязного бетона */
+            --black: #111;
+            --red: #d92b3a;
+            --turquoise: #00b4a9;
+            --font-main: 'Montserrat', sans-serif;
+            --font-vandal: 'Permanent Marker', cursive;
+            --font-heading: 'Rubik Mono One', sans-serif;
+        }
+
+        * {
+            box-sizing: border-box;
+            margin: 0;
+            padding: 0;
+        }
+
+        body {
+            font-family: var(--font-main);
+            background-color: var(--bg-color);
+            color: var(--black);
+            overflow-x: hidden;
+            /* Сюда потом можно добавить фоновую картинку текстуры бетона */
+            /* background-image: url('concrete-texture.jpg'); */
+        }
+
+        /* --- Всплывающее окно 21+ --- */
+        #age-gate {
+            position: fixed;
+            top: 0; left: 0; width: 100%; height: 100%;
+            background: rgba(0, 0, 0, 0.95);
+            color: white;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            z-index: 9999;
+            text-align: center;
+            padding: 20px;
+        }
+        #age-gate h2 {
+            font-family: var(--font-heading);
+            font-size: 2rem;
+            color: var(--red);
+            margin-bottom: 20px;
+        }
+        #age-gate p {
+            margin-bottom: 30px;
+            font-size: 1.2rem;
+        }
+        .age-btns {
+            display: flex;
+            gap: 20px;
+        }
+
+        /* --- Кнопки в вандальском стиле --- */
+        .btn {
+            font-family: var(--font-heading);
+            padding: 15px 30px;
+            border: 3px solid var(--black);
+            background: var(--turquoise);
+            color: var(--black);
+            text-transform: uppercase;
+            text-decoration: none;
+            cursor: pointer;
+            transition: all 0.2s;
+            box-shadow: 5px 5px 0px var(--black);
+        }
+        .btn:hover {
+            transform: translate(2px, 2px);
+            box-shadow: 3px 3px 0px var(--black);
+        }
+        .btn-red {
+            background: var(--red);
+            color: white;
+        }
+
+        /* --- Шапка --- */
+        header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 20px 50px;
+            border-bottom: 4px solid var(--black);
+            background: rgba(255, 255, 255, 0.5);
+        }
+        .logo {
+            font-family: var(--font-vandal);
+            font-size: 3rem;
+            line-height: 1;
+            transform: rotate(-3deg);
+            text-shadow: 3px 3px 0px var(--turquoise);
+        }
+        nav a {
+            text-decoration: none;
+            color: var(--black);
+            font-weight: 700;
+            margin: 0 15px;
+            text-transform: uppercase;
+            font-family: var(--font-heading);
+            font-size: 0.9rem;
+        }
+        nav a:hover {
+            color: var(--red);
+        }
+        .header-contacts .btn {
+            padding: 10px 20px;
+            font-size: 0.8rem;
+        }
+
+        /* --- Главный экран (Hero) --- */
+        .hero {
+            display: flex;
+            padding: 80px 50px;
+            align-items: center;
+            justify-content: space-between;
+        }
+        .hero-text {
+            max-width: 50%;
+        }
+        .hero-text h1 {
+            font-family: var(--font-vandal);
+            font-size: 4.5rem;
+            line-height: 1.1;
+            margin-bottom: 20px;
+        }
+        .hero-text p {
+            font-size: 1.5rem;
+            font-weight: 700;
+            margin-bottom: 40px;
+        }
+
+        /* --- Секция "Твои варианты пара" --- */
+        .products {
+            padding: 50px;
+            text-align: center;
+        }
+        .products h2 {
+            font-family: var(--font-heading);
+            font-size: 2.5rem;
+            margin-bottom: 50px;
+        }
+        .cards-container {
+            display: flex;
+            justify-content: center;
+            gap: 40px;
+            flex-wrap: wrap;
+        }
+        
+        /* Эффект стикера для карточек */
+        .sticker-card {
+            background: white;
+            border: 5px solid white;
+            border-radius: 15px;
+            padding: 15px;
+            width: 300px;
+            box-shadow: 8px 8px 0px rgba(0,0,0,0.9);
+            transform: rotate(-2deg);
+            transition: transform 0.3s;
+        }
+        .sticker-card:nth-child(2) {
+            transform: rotate(3deg);
+        }
+        .sticker-card:hover {
+            transform: scale(1.05) rotate(0deg);
+        }
+        .sticker-card img {
+            width: 100%;
+            border-radius: 10px;
+            background: #ccc; /* Заглушка, пока нет реальных фото */
+            height: 300px;
+            object-fit: cover;
+            border: 3px solid var(--black);
+        }
+        .sticker-card h3 {
+            font-family: var(--font-vandal);
+            font-size: 1.5rem;
+            margin: 15px 0 5px;
+            text-transform: uppercase;
+        }
+        .sticker-card .price {
+            font-weight: 900;
+            font-size: 1.2rem;
+            margin-bottom: 15px;
+        }
+
+        /* --- Адаптив --- */
+        @media (max-width: 768px) {
+            header { flex-direction: column; gap: 20px; text-align: center; }
+            .hero { flex-direction: column; text-align: center; padding: 40px 20px; }
+            .hero-text { max-width: 100%; }
+            .hero-text h1 { font-size: 3rem; }
+        }
+    </style>
+</head>
+<body>
+
+    <div id="age-gate">
+        <h2>ВНИМАНИЕ! 21+</h2>
+        <p>Сайт содержит информацию о табачной продукции.<br>В соответствии с законодательством РК, доступ разрешен только лицам старше 21 года.</p>
+        <div class="age-btns">
+            <button class="btn" onclick="closeAgeGate()">Да, мне есть 21</button>
+            <a href="https://google.com" class="btn btn-red">Нет, мне меньше</a>
+        </div>
+    </div>
+
+    <header>
+        <div class="logo">ДӘМ ДЫМ</div>
+        <nav>
+            <a href="#hookahs">Наши кальяны</a>
+            <a href="#how">Как работаем</a>
+        </nav>
+        <div class="header-contacts">
+            <a href="#" class="btn">WhatsApp</a>
+        </div>
+    </header>
+
+    <section class="hero">
+        <div class="hero-text">
+            <h1>КАЛЬЯН НА ДОМ.<br><span style="color: var(--turquoise);">СМЕЛЫЙ ПАР.</span></h1>
+            <p>Премиум доставка кальянов за 60 минут в Астане. Выбери свой хаос.</p>
+            <a href="#hookahs" class="btn btn-red" style="font-size: 1.2rem;">ВЫБРАТЬ СВОЙ CHAOS →</a>
+        </div>
+        <div class="hero-image">
+            <img src="https://via.placeholder.com/400x500/111/fff?text=HOOKAH+IMAGE" alt="Кальян" style="border: none; mix-blend-mode: multiply;">
+        </div>
+    </section>
+
+    <section class="products" id="hookahs">
+        <h2>ТВОИ ВАРИАНТЫ ПАРА</h2>
+        
+        <div class="cards-container">
+            <div class="sticker-card">
+                <img src="https://via.placeholder.com/300x300/00b4a9/111?text=TURQUOISE" alt="Бирюзовый хаос">
+                <h3>Бирюзовый Хаос</h3>
+                <p class="price">15 000 ₸ / сутки</p>
+                <a href="#" class="btn" style="display: block;">АРЕНДОВАТЬ</a>
+            </div>
+
+            <div class="sticker-card">
+                <img src="https://via.placeholder.com/300x300/d92b3a/111?text=RED+VANDAL" alt="Красный вандал">
+                <h3>Красный Вандал</h3>
+                <p class="price">15 000 ₸ / сутки</p>
+                <a href="#" class="btn btn-red" style="display: block;">АРЕНДОВАТЬ</a>
+            </div>
+
+            <div class="sticker-card">
+                <img src="https://via.placeholder.com/300x300/111/fff?text=BLACK+PUNK" alt="Черный панк">
+                <h3>Черный Панк</h3>
+                <p class="price">15 000 ₸ / сутки</p>
+                <a href="#" class="btn" style="display: block; background: var(--black); color: white;">АРЕНДОВАТЬ</a>
+            </div>
+        </div>
+    </section>
+
+    <script>
+        // Простая логика для окна 21+
+        function closeAgeGate() {
+            document.getElementById('age-gate').style.display = 'none';
+            // В идеале тут нужно сохранять куки, чтобы не спрашивать каждый раз
+            // document.cookie = "age_verified=true; max-age=2592000; path=/"; 
+        }
+
+        // Проверка куки при загрузке (раскомментировать на боевом сервере)
+        /*
+        window.onload = function() {
+            if (document.cookie.indexOf("age_verified=true") !== -1) {
+                document.getElementById('age-gate').style.display = 'none';
+            }
+        }
+        */
+    </script>
+</body>
+</html>
