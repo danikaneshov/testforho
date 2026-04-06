@@ -3,14 +3,15 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
-    <title>dám dym | Доставка кальянов Астана</title>
+    <title>vkasanie | Доставка кальянов Астана</title>
     <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@500;700;800;900&family=Permanent+Marker&display=swap" rel="stylesheet">
     <style>
         :root {
-            --bg-dirty: #dad4c7;
-            --black: #121212;
-            --red: #e60023;
-            --cyan: #00e5ff;
+            --bg-dark: #070707;
+            --black: #000000;
+            --white: #ffffff;
+            --grey: #1f1f1f;
+            --light-grey: #e0e0e0;
             --font-body: 'Montserrat', sans-serif;
             --font-vandal: 'Permanent Marker', cursive;
         }
@@ -20,10 +21,10 @@
         }
 
         body {
-            font-family: var(--font-body); background-color: var(--bg-dirty); color: var(--black);
+            font-family: var(--font-body); background-color: var(--bg-dark); color: var(--white);
             background-image: 
-                radial-gradient(#00000015 1px, transparent 1px),
-                radial-gradient(#00000015 1px, transparent 1px);
+                radial-gradient(rgba(255, 255, 255, 0.05) 1px, transparent 1px),
+                radial-gradient(rgba(255, 255, 255, 0.05) 1px, transparent 1px);
             background-size: 20px 20px; background-position: 0 0, 10px 10px;
         }
 
@@ -36,63 +37,68 @@
         .btn {
             display: inline-flex; justify-content: center; align-items: center;
             font-family: var(--font-body); font-weight: 900; text-transform: uppercase;
-            padding: 15px 30px; background: var(--cyan); color: var(--black);
-            text-decoration: none; border: 4px solid var(--black); box-shadow: 4px 4px 0px var(--black);
-            transition: transform 0.1s, box-shadow 0.1s; font-size: 1.1rem; letter-spacing: 1px;
+            padding: 15px 30px; background: var(--white); color: var(--black);
+            text-decoration: none; border: 4px solid var(--white); box-shadow: 4px 4px 0px rgba(255,255,255,0.3);
+            transition: transform 0.1s, box-shadow 0.1s, background 0.2s, color 0.2s; font-size: 1.1rem; letter-spacing: 1px;
         }
-        .btn:active { transform: translate(4px, 4px); box-shadow: 0px 0px 0px var(--black); }
-        .btn-red { background: var(--red); color: white; }
-        .btn-black { background: var(--black); color: white; }
+        .btn:active { transform: translate(4px, 4px); box-shadow: 0px 0px 0px transparent; }
+        
+        .btn-black { background: var(--black); color: var(--white); border-color: var(--white); box-shadow: 4px 4px 0px var(--white); }
+        .btn-black:active { box-shadow: 0px 0px 0px transparent; }
+
+        .btn-invert { background: transparent; color: var(--white); border-color: var(--white); box-shadow: 4px 4px 0px var(--white); }
+        .btn-invert:hover { background: var(--white); color: var(--black); }
 
         .mobile-fab {
             position: fixed; bottom: 15px; left: 5%; width: 90%; z-index: 9999; display: none;
-            font-size: 1.1rem; padding: 18px; border-radius: 0; box-shadow: 4px 4px 0 var(--black);
+            font-size: 1.1rem; padding: 18px; border-radius: 0; box-shadow: 4px 4px 0 rgba(255,255,255,0.5);
+            background: var(--white); color: var(--black); border: 4px solid var(--black);
         }
 
         #age-gate {
-            position: fixed; inset: 0; background: rgba(18, 18, 18, 0.99); z-index: 10000;
+            position: fixed; inset: 0; background: rgba(0, 0, 0, 0.98); z-index: 10000;
             display: flex; flex-direction: column; justify-content: center; align-items: center;
-            text-align: center; padding: 20px; color: white; transition: opacity 0.4s ease;
+            text-align: center; padding: 20px; color: var(--white); transition: opacity 0.4s ease;
         }
-        #age-gate h2 { font-family: var(--font-body); font-weight: 900; font-size: clamp(3rem, 8vw, 5rem); color: var(--red); margin-bottom: 20px; text-transform: uppercase; }
-        #age-gate p { font-size: 1.2rem; font-weight: 500; max-width: 500px; margin-bottom: 40px; }
+        #age-gate h2 { font-family: var(--font-body); font-weight: 900; font-size: clamp(3rem, 8vw, 5rem); color: var(--white); margin-bottom: 20px; text-transform: uppercase; text-shadow: 4px 4px 0 var(--grey); }
+        #age-gate p { font-size: 1.2rem; font-weight: 500; max-width: 500px; margin-bottom: 40px; color: #aaa; }
         .age-buttons { display: flex; gap: 20px; flex-wrap: wrap; justify-content: center; }
 
         header {
             padding: 15px 5vw; display: flex; justify-content: space-between; align-items: center;
-            border-bottom: 4px solid var(--black); background: rgba(218, 212, 199, 0.95);
+            border-bottom: 4px solid var(--grey); background: rgba(7, 7, 7, 0.95);
             backdrop-filter: blur(5px); position: sticky; top: 0; z-index: 1000; flex-wrap: wrap; gap: 10px;
         }
         .logo-wrapper { display: flex; align-items: center; gap: 15px; }
-        .logo { font-family: var(--font-vandal); font-size: 2.2rem; line-height: 1; color: var(--black); text-decoration: none; }
+        .logo { font-family: var(--font-vandal); font-size: 2.2rem; line-height: 1; color: var(--white); text-decoration: none; letter-spacing: 1px; }
         
         .status-badge {
             display: inline-flex; align-items: center; gap: 8px; font-family: var(--font-vandal); font-size: 1rem;
-            background: white; color: var(--black); padding: 5px 12px; border: 3px solid var(--black);
-            transform: rotate(-3deg); box-shadow: 3px 3px 0 var(--black);
+            background: var(--white); color: var(--black); padding: 5px 12px; border: 3px solid var(--black);
+            transform: rotate(-3deg); box-shadow: 3px 3px 0 var(--grey);
         }
         .pulse-dot {
-            width: 10px; height: 10px; background: #00ff00; border-radius: 50%;
-            border: 2px solid var(--black); animation: dot-pulse 1.5s infinite;
+            width: 10px; height: 10px; background: var(--black); border-radius: 50%;
+            animation: dot-pulse 1.5s infinite;
         }
         @keyframes dot-pulse { 0% { transform: scale(1); } 50% { transform: scale(1.3); } 100% { transform: scale(1); } }
 
         nav { display: flex; gap: 20px; align-items: center; }
-        nav a { font-family: var(--font-body); font-weight: 900; font-size: 1rem; color: var(--black); text-decoration: none; text-transform: uppercase; }
+        nav a { font-family: var(--font-body); font-weight: 900; font-size: 1rem; color: var(--white); text-decoration: none; text-transform: uppercase; transition: color 0.2s; }
+        nav a:hover { color: #aaa; }
 
         .slant-master {
             width: 110vw; margin-left: -5vw; transform: skewY(-4deg); transform-origin: top left;
             margin-top: -5vw; position: relative;
         }
-        .hero-bg { background: var(--black); padding: 150px 10vw 80px; }
-        .hero-content { transform: skewY(4deg); text-align: center; color: white; max-width: 900px; margin: 0 auto; }
-        .hero-title { font-family: var(--font-vandal); font-size: clamp(3rem, 10vw, 8rem); line-height: 0.9; margin-bottom: 20px; }
-        .hero-subtitle { font-size: 1.2rem; font-weight: 800; margin-bottom: 40px; text-transform: uppercase; }
+        .hero-bg { background: var(--grey); padding: 150px 10vw 80px; border-bottom: 5px solid var(--white); }
+        .hero-content { transform: skewY(4deg); text-align: center; color: var(--white); max-width: 900px; margin: 0 auto; }
+        .hero-title { font-family: var(--font-vandal); font-size: clamp(3rem, 10vw, 8rem); line-height: 0.9; margin-bottom: 20px; text-shadow: 5px 5px 0 var(--black); }
+        .hero-subtitle { font-size: 1.2rem; font-weight: 800; margin-bottom: 40px; text-transform: uppercase; color: var(--light-grey); }
 
         .marquee-wrapper {
-            background: var(--red); color: white; padding: 15px 0;
-            border-top: 5px solid var(--black); border-bottom: 5px solid var(--black);
-            width: 100%; display: flex; overflow: hidden;
+            background: var(--white); color: var(--black); padding: 15px 0;
+            border-bottom: 5px solid var(--black); width: 100%; display: flex; overflow: hidden;
         }
         .marquee {
             white-space: nowrap; font-family: var(--font-body); font-weight: 900; font-size: 1.5rem;
@@ -105,19 +111,18 @@
         .catalog { padding: 80px 0 40px; text-align: center; }
         .section-title {
             font-family: var(--font-body); font-weight: 900; font-size: 2.5rem;
-            display: inline-block; background: var(--black); color: white;
+            display: inline-block; background: var(--white); color: var(--black);
             padding: 10px 20px; margin-bottom: 10px; text-transform: uppercase; transform: rotate(1deg);
         }
         
         .promo-subtitle {
-            font-family: var(--font-body); font-weight: 900; font-size: 1.4rem; color: var(--red);
+            font-family: var(--font-body); font-weight: 900; font-size: 1.4rem; color: var(--light-grey);
             margin-bottom: 20px; text-transform: uppercase; padding: 0 10px;
         }
 
-        /* Подсказка для свайпа */
         .swipe-hint {
             display: inline-block; font-family: var(--font-body); font-weight: 900;
-            font-size: 0.9rem; color: white; background: var(--black);
+            font-size: 0.9rem; color: var(--black); background: var(--white);
             padding: 5px 15px; margin-bottom: 30px; text-transform: uppercase;
             transform: rotate(-2deg);
             animation: swipe-nudge 1.5s infinite;
@@ -139,34 +144,36 @@
         .grid::-webkit-scrollbar { display: none; }
         
         .card {
-            background: white; border: 4px solid var(--black); padding: 20px;
-            min-width: 340px; max-width: 360px; flex: 0 0 auto; box-shadow: 6px 6px 0px rgba(0,0,0,1);
+            background: var(--black); border: 4px solid var(--white); padding: 20px;
+            min-width: 340px; max-width: 360px; flex: 0 0 auto; box-shadow: 6px 6px 0px var(--grey);
             scroll-snap-align: center; text-align: left; display: flex; flex-direction: column;
         }
 
         .card-art {
-            height: 200px; border: 4px solid var(--black); margin-bottom: 20px;
+            height: 200px; border: 4px solid var(--white); margin-bottom: 20px;
             display: flex; flex-direction: column; align-items: center; justify-content: center;
             font-family: var(--font-vandal); position: relative; overflow: hidden;
         }
-        .art-bg-1 { background: repeating-linear-gradient(45deg, #fff, #fff 10px, var(--cyan) 10px, var(--cyan) 20px); }
-        .art-bg-2 { background: repeating-linear-gradient(-45deg, #121212, #121212 10px, var(--red) 10px, var(--red) 20px); color: white; }
-        .art-bg-3 { background: var(--black); color: white; }
-        .art-bg-4 { background: var(--cyan); border-color: var(--black); }
         
-        .art-text { font-size: 4rem; z-index: 2; text-shadow: 3px 3px 0px var(--black); }
-        .art-bg-2 .art-text { text-shadow: 3px 3px 0px var(--black); }
-        .art-bg-3 .art-text { text-shadow: 3px 3px 0px var(--red); font-size: 5rem; }
-        .art-bg-4 .art-text { color: var(--black); text-shadow: 3px 3px 0px white; }
+        /* Монохромные фоны для карточек */
+        .art-bg-1 { background: repeating-linear-gradient(45deg, var(--black), var(--black) 10px, var(--grey) 10px, var(--grey) 20px); }
+        .art-bg-2 { background: var(--white); color: var(--black); }
+        .art-bg-3 { background: repeating-linear-gradient(-45deg, var(--white), var(--white) 10px, var(--light-grey) 10px, var(--light-grey) 20px); color: var(--black); border-color: var(--white); }
+        .art-bg-4 { background: var(--grey); }
         
-        .card-title { font-family: var(--font-vandal); font-size: 2rem; margin-bottom: 5px; }
-        .card-desc { font-weight: 800; font-size: 1rem; margin-bottom: 10px; line-height: 1.3; }
-        .card-kit { font-weight: 500; font-size: 0.85rem; color: #444; line-height: 1.4; margin-bottom: 20px; }
+        .art-text { font-size: 4rem; z-index: 2; text-shadow: 3px 3px 0px rgba(0,0,0,0.8); color: var(--white); }
+        .art-bg-2 .art-text { text-shadow: 3px 3px 0px rgba(255,255,255,0.8); color: var(--black); }
+        .art-bg-3 .art-text { text-shadow: 3px 3px 0px var(--white); color: var(--black); font-size: 5rem; }
+        .art-bg-4 .art-text { color: var(--white); text-shadow: 3px 3px 0px var(--black); }
         
-        .card-price { font-family: var(--font-vandal); font-size: 2.2rem; margin-bottom: 20px; color: var(--red); display: flex; align-items: baseline; gap: 10px; flex-wrap: wrap; }
-        .old-price { font-family: var(--font-body); font-weight: 900; font-size: 1.2rem; color: #777; text-decoration: line-through; text-decoration-color: var(--black); text-decoration-thickness: 3px; }
+        .card-title { font-family: var(--font-vandal); font-size: 2rem; margin-bottom: 5px; color: var(--white); }
+        .card-desc { font-weight: 800; font-size: 1rem; margin-bottom: 10px; line-height: 1.3; color: var(--light-grey); }
+        .card-kit { font-weight: 500; font-size: 0.85rem; color: #888; line-height: 1.4; margin-bottom: 20px; }
         
-        .card-price-ru { font-family: var(--font-body); font-weight: 900; font-size: 1.8rem; margin-bottom: 20px; color: var(--black); }
+        .card-price { font-family: var(--font-vandal); font-size: 2.2rem; margin-bottom: 20px; color: var(--white); display: flex; align-items: baseline; gap: 10px; flex-wrap: wrap; }
+        .old-price { font-family: var(--font-body); font-weight: 900; font-size: 1.2rem; color: #555; text-decoration: line-through; text-decoration-color: var(--white); text-decoration-thickness: 3px; }
+        
+        .card-price-ru { font-family: var(--font-body); font-weight: 900; font-size: 1.8rem; margin-bottom: 20px; color: var(--white); }
 
         .card .btn {
             align-self: stretch; 
@@ -177,16 +184,16 @@
 
         /* --- СТАТИЧНЫЙ FAQ --- */
         .faq { padding: 50px 5vw 80px; max-width: 800px; margin: 0 auto; }
-        .faq-item { margin-bottom: 20px; border: 4px solid var(--black); background: white; padding-bottom: 20px; }
+        .faq-item { margin-bottom: 20px; border: 4px solid var(--white); background: var(--black); padding-bottom: 20px; }
         .faq-question {
             width: 100%; text-align: left; padding: 20px 20px 10px 20px;
             font-family: var(--font-body); font-weight: 900; font-size: 1.2rem;
-            text-transform: uppercase; color: var(--red);
+            text-transform: uppercase; color: var(--white);
         }
-        .faq-text { padding: 0 20px; font-weight: 500; line-height: 1.6; color: var(--black); }
+        .faq-text { padding: 0 20px; font-weight: 500; line-height: 1.6; color: var(--light-grey); }
 
-        footer { padding: 60px 5vw; background: var(--black); color: white; text-align: center; }
-        footer .logo { font-family: var(--font-vandal); font-size: 2.5rem; color: white; margin-bottom: 15px; display: inline-block; }
+        footer { padding: 60px 5vw; background: var(--black); color: var(--white); text-align: center; border-top: 4px solid var(--grey); }
+        footer .logo { font-family: var(--font-vandal); font-size: 2.5rem; color: var(--white); margin-bottom: 15px; display: inline-block; letter-spacing: 2px;}
 
         @media (max-width: 768px) {
             header nav { display: none; }
@@ -204,21 +211,21 @@
         <h2>Внимание 21+</h2>
         <p>Сайт содержит информацию о табачной продукции. Доставка строго лицам, достигшим 21 года.</p>
         <div class="age-buttons">
-            <button class="btn btn-red" onclick="verifyAge()">ДА, МНЕ ЕСТЬ 21</button>
-            <a href="https://google.com" class="btn">НЕТ, УЙТИ</a>
+            <button class="btn btn-invert" onclick="verifyAge()">ДА, МНЕ ЕСТЬ 21</button>
+            <a href="https://google.com" class="btn btn-black">НЕТ, УЙТИ</a>
         </div>
     </div>
 
     <div class="site-wrapper">
         <header>
             <div class="logo-wrapper">
-                <a href="#" class="logo">dám dym</a>
+                <a href="#" class="logo">vkasanie</a>
                 <div class="status-badge"><span class="pulse-dot"></span> 24/7 ONLINE</div>
             </div>
             <nav>
                 <a href="#catalog">Аппараты</a>
                 <a href="#faq">Условия</a>
-                <a href="https://wa.me/77000000000" target="_blank" class="btn btn-cyan" style="padding: 10px 20px; font-size: 0.9rem;">WHATSAPP</a>
+                <a href="https://wa.me/77000000000" target="_blank" class="btn" style="padding: 10px 20px; font-size: 0.9rem;">WHATSAPP</a>
             </nav>
         </header>
 
@@ -227,7 +234,7 @@
                 <div class="hero-content reveal">
                     <h1 class="hero-title">DYM TAM,<br>GDE TY</h1>
                     <p class="hero-subtitle">Доставка кальянов по Астане 24/7. Привезем за 60 минут. Никаких предоплат.</p>
-                    <a href="#catalog" class="btn btn-red">ВЫБРАТЬ АППАРАТ</a>
+                    <a href="#catalog" class="btn">ВЫБРАТЬ АППАРАТ</a>
                 </div>
             </section>
             
@@ -253,7 +260,7 @@
                     <p class="card-desc">Отличный выбор для комфортного вечера одному или в паре.</p>
                     <p class="card-kit">В комплекте: 1 аппарат в полной сборке, 1 порция табака, 4 угля, электроплитка, щипцы, мундштуки.</p>
                     <p class="card-price"><span class="old-price">8 750 ₸</span> 7 000 ₸</p>
-                    <a href="#" class="btn btn-black order-link">ЗАКАЗАТЬ</a>
+                    <a href="#" class="btn order-link">ЗАКАЗАТЬ</a>
                 </div>
 
                 <div class="card reveal" style="transition-delay: 0.1s;">
@@ -262,7 +269,7 @@
                     <p class="card-desc">Самый популярный. Взять две забивки — выгоднее, чем докупать позже!</p>
                     <p class="card-kit">В комплекте: 1 аппарат в полной сборке, 2 порции табака, 8 углей, электроплитка, щипцы, мундштуки.</p>
                     <p class="card-price"><span class="old-price">11 250 ₸</span> 9 000 ₸</p>
-                    <a href="#" class="btn btn-red order-link">ЗАКАЗАТЬ</a>
+                    <a href="#" class="btn btn-black order-link">ЗАКАЗАТЬ</a>
                 </div>
 
                 <div class="card reveal" style="transition-delay: 0.2s;">
@@ -280,7 +287,7 @@
                     <p class="card-desc">Кейтеринг на вашем празднике, дне рождении или корпоративе.</p>
                     <p class="card-kit">В услугу входит: Выезд мастера с оборудованием, проф. забивки, контроль жара и замена углей.</p>
                     <p class="card-price-ru">ИНДИВИДУАЛЬНО</p>
-                    <a href="#" class="btn btn-black order-link">ЗАКАЗАТЬ</a>
+                    <a href="#" class="btn btn-invert order-link">ЗАКАЗАТЬ</a>
                 </div>
 
             </div>
@@ -319,27 +326,22 @@
         </section>
 
         <footer>
-            <div class="logo">dám dym</div>
+            <div class="logo">vkasanie</div>
             <p style="font-weight: 900; font-size: 1.2rem; margin-bottom: 20px;">РАБОТАЕМ 24/7 ПО АСТАНЕ</p>
-            <p style="font-size: 0.8rem; color: #888;">© 2026 dám dym Astana. Курение вредит здоровью.</p>
+            <p style="font-size: 0.8rem; color: #555;">© 2026 vkasanie. Курение вредит здоровью.</p>
         </footer>
     </div>
 
-    <a href="#" class="btn btn-red mobile-fab order-link">
+    <a href="#" class="btn mobile-fab order-link">
         💬 ЗАКАЗАТЬ
     </a>
 
     <script>
-        // ==============================================================
-        // --- ССЫЛКА НА ПРИЛОЖЕНИЕ (МЕНЯТЬ ТОЛЬКО ЗДЕСЬ) ---
-        // ==============================================================
         const APP_URL = "https://pwa2-if31.onrender.com";
 
-        // Этот код сам находит все кнопки ЗАКАЗАТЬ и подставляет нужную ссылку
         document.querySelectorAll('.order-link').forEach(link => {
             link.href = APP_URL;
         });
-        // ==============================================================
 
         document.addEventListener("DOMContentLoaded", () => {
             const ageGate = document.getElementById('age-gate');
